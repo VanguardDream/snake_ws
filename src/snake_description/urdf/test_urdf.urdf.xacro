@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="test_urdf" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!--xacro variables-->
+  <xacro:property name="PI" value="3.1415926535897931" />
+  <xacro:property name="box_width" value="0.050" />
+  <xacro:property name="box_depth" value="0.040" />
+  <xacro:property name="box_height" value="0.080" />
+  <xacro:property name="origin_to_joint_x" value="0" />
+  <xacro:property name="origin_to_joint_y" value="0" />
+  <xacro:property name="origin_to_joint_z" value="-0.014" />
+
+  <material name="light_grey"><color rgba="0.4 0.4 0.4 1.0" /></material>
+  
+  <!--xacro macro-->
+  <xacro:macro name="node" params="prefix">
+
+    <link name="${prefix}_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://test_urdf/meshes/link1.STL" />
+        </geometry>
+        <material name="light_grey" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="${box_width} ${box_depth} ${box_height}"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.060"/>
+        <inertia ixx="4.0E-05" iyy="4.45E-05" izz="2.05E-05"/>
+      </inertial>
+    </link>
+
+    <!-- <gazebo reference="${prefix}_link">
+      <material>Gazebo/DarkGrey</material>
+      <selfCollide>false</selfCollide>
+      <mu1 value="0.5"/>
+      <mu2 value="0.5"/>
+      <kp value="10000000.0" />
+      <kd value="1" />
+      <fdir1 value="1 0 0"/>
+    </gazebo> -->
+
+    <joint name="${prefix}_joint" type="continuous">
+      <axis xyz="1 0 0" />
+      <xacro:insert_block name="joint_pose" />
+    </joint>
+
+    <transmission name="${prefix}_joint_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}_joint">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}_actuator">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+  </xacro:macro>
+
+  <!--For base Foot Print-->
+  
+  <link name="base_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.06" />
+      <inertia ixx="4.0E-05" iyy="4.45E-05" izz="2.05E-05"/>
+    </inertial>
+
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://test_urdf/meshes/base_link.STL" />
+      </geometry>
+      <material name="light_grey" />
+    </visual>
+
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="${box_width} ${box_depth} ${box_height}"/>
+        </geometry>
+    </collision>
+  </link>
+
+  <xacro:node prefix="1">
+    <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${-origin_to_joint_z}" rpy="0 0 ${PI/4}" />
+    <joint>
+      <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${origin_to_joint_z}" rpy="0 0 0" />
+      <parent link="base_link"/>
+      <child link="1_link"/>
+    </joint>
+  </xacro:node>
+
+  <xacro:node prefix="2">
+    <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${-origin_to_joint_z}" rpy="0 0 ${-PI/4}" />
+    <joint>
+      <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${origin_to_joint_z}" rpy="0 0 0" />
+      <parent link="1_link"/>
+      <child link="2_link"/>
+    </joint>
+  </xacro:node>
+
+  <xacro:node prefix="3">
+    <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${-origin_to_joint_z}" rpy="0 0 ${PI/4}" />
+    <joint>
+      <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${origin_to_joint_z}" rpy="0 0 0" />
+      <parent link="2_link"/>
+      <child link="3_link"/>
+    </joint>
+  </xacro:node>
+
+  <xacro:node prefix="4">
+    <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${-origin_to_joint_z}" rpy="0 0 ${-PI/4}" />
+    <joint>
+      <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${origin_to_joint_z}" rpy="0 0 0" />
+      <parent link="3_link"/>
+      <child link="4_link"/>
+    </joint>
+  </xacro:node>
+
+  <xacro:node prefix="5">
+    <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${-origin_to_joint_z}" rpy="0 0 ${PI/4}" />
+    <joint>
+      <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${origin_to_joint_z}" rpy="0 0 0" />
+      <parent link="4_link"/>
+      <child link="5_link"/>
+    </joint>
+  </xacro:node>
+
+  <xacro:node prefix="6">
+    <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${-origin_to_joint_z}" rpy="0 0 ${-PI/4}" />
+    <joint>
+      <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${origin_to_joint_z}" rpy="0 0 0" />
+      <parent link="5_link"/>
+      <child link="6_link"/>
+    </joint>
+  </xacro:node>
+
+  <xacro:node prefix="7">
+    <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${-origin_to_joint_z}" rpy="0 0 ${PI/4}" />
+    <joint>
+      <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${origin_to_joint_z}" rpy="0 0 0" />
+      <parent link="6_link"/>
+      <child link="7_link"/>
+    </joint>
+  </xacro:node>
+
+  <xacro:node prefix="8">
+    <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${-origin_to_joint_z}" rpy="0 0 ${-PI/4}" />
+    <joint>
+      <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${origin_to_joint_z}" rpy="0 0 0" />
+      <parent link="7_link"/>
+      <child link="8_link"/>
+    </joint>
+  </xacro:node>
+
+  <!-- Gazebo property
+  <gazebo reference="base_link">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="link1">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="link2">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="link3">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="link4">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="link5">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="link6">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="link7">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="link8">
+    <selfCollide>true</selfCollide>
+  </gazebo> -->
+
+</robot>
