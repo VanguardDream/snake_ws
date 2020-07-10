@@ -1,0 +1,96 @@
+snake:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50  
+  
+  # Position Controllers ---------------------------------------
+  1_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: 1_joint
+    publish_rate: 50
+    pid: {p: 1.0, i: 0.01, d: 0.01}
+
+  2_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: 2_joint
+    publish_rate: 50
+    pid: {p: 1.0, i: 0.01, d: 0.01}
+
+  3_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: 3_joint
+    publish_rate: 50
+    pid: {p: 1.0, i: 0.01, d: 0.01}
+
+  4_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: 4_joint
+    publish_rate: 50
+    pid: {p: 1.0, i: 0.01, d: 0.01}
+  
+  5_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: 5_joint
+    publish_rate: 50
+    pid: {p: 1.0, i: 0.01, d: 0.01}
+  
+  6_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: 6_joint
+    publish_rate: 50
+    pid: {p: 1.0, i: 0.01, d: 0.01}
+
+  7_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: 7_joint
+    publish_rate: 50
+    pid: {p: 1.0, i: 0.01, d: 0.01}
+
+  8_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: 8_joint
+    publish_rate: 50
+    pid: {p: 1.0, i: 0.01, d: 0.01}
+
+  9_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: 9_joint
+    publish_rate: 50
+    pid: {p: 1.0, i: 0.01, d: 0.01}
+
+  10_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: 10_joint
+    publish_rate: 50
+    pid: {p: 1.0, i: 0.01, d: 0.01}
+
+  11_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: 11_joint
+    publish_rate: 50
+    pid: {p: 1.0, i: 0.01, d: 0.01}
+
+  12_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: 12_joint
+    publish_rate: 50
+    pid: {p: 1.0, i: 0.01, d: 0.01}
+
+  13_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: 13_joint
+    publish_rate: 50
+    pid: {p: 1.0, i: 0.01, d: 0.01}
+
+  14_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: 14_joint
+    publish_rate: 50
+    pid: {p: 1.0, i: 0.01, d: 0.01}
+
+  15_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: 15_joint
+    publish_rate: 50
+    pid: {p: 1.0, i: 0.01, d: 0.01}

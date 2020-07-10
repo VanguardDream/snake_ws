@@ -3,16 +3,15 @@
 <robot name="snake_test">
 
     <link name="base_link">
-        <visual>
+        <!-- <visual>
             <origin xyz="0 0 0.0" rpy="0 -1.57075 0"/>
             <geometry>
                 <box size="0.03 0.03 0.005"/>
             </geometry>
-            <material name="black"/>
-        </visual>    
+        </visual>        -->
     </link>
 
-    <joint name="endpoint" type="fixed">
+    <joint name="base_link_joint" type="fixed">
         <parent link="base_link"/>
         <child link="head"/>
         <origin xyz="0.0 0.0 0.0" rpy="0.0 1.57075 0.0"/>
