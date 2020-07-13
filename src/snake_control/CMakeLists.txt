@@ -12,7 +12,6 @@ find_package(catkin REQUIRED COMPONENTS
   effort_controllers
   joint_state_controller
   robot_state_publisher
-  # rpt_gui
 )
 
 ## System dependencies are found with CMake's conventions
