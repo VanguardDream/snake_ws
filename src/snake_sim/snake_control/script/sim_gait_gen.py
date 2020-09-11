@@ -2,6 +2,7 @@
 
 import rospy
 import sys
+import math
 
 from std_msgs.msg import String
 from std_msgs.msg import Float64
@@ -25,11 +26,26 @@ pub_com_15 = rospy.Publisher('/snake/15_joint_position_controller/command', data
 pub_com_16 = rospy.Publisher('/snake/16_joint_position_controller/command', data_class=Float64, queue_size= 1)
 
 thetas = []
+count = 0
+phase_ver =  3.1415 / 6
+phase_hor =  3.1415 / 6
+
 for i in range(16):
     thetas.append(0)
 
-# def motionCalculate():
-    
+def motionCalculate():
+    global count
+
+    thetas[1] = math.cos(count + phase_ver * 1)
+    thetas[3] = math.cos(count + phase_ver * 3)
+    thetas[5] = math.cos(count + phase_ver * 5)
+    thetas[7] = math.cos(count + phase_ver * 7)
+    thetas[9] = math.cos(count + phase_ver * 9)
+    thetas[11] = math.cos(count + phase_ver * 11)
+    thetas[13] = math.cos(count + phase_ver * 13)
+    thetas[15] = math.cos(count + phase_ver * 15)
+     
+    count+=1
 
 def commandSend():
     pub_com_1.publish(thetas[0])
@@ -54,7 +70,7 @@ if __name__ == '__main__':
     rate = rospy.Rate(20)
 
     while not rospy.is_shutdown():
-        # motionCalculate()
+        motionCalculate()
 
         commandSend()
 
