@@ -35,6 +35,7 @@
     <!-- Usage : <xacro:gazebo_links prefix="head"/> -->
 
     <link name="base_link">
+        <origin xyz="0.0 0.0 0.0"/>
         <!-- <visual>
             <origin xyz="0 0 0.0" rpy="0 -1.57075 0"/>
             <geometry>
@@ -46,7 +47,7 @@
     <joint name="base_link_joint" type="fixed">
         <parent link="base_link"/>
         <child link="head"/>
-        <origin xyz="0.0 0.0 0.0" rpy="0.0 1.57075 0.0"/>
+        <origin xyz="0.0 0.0 0.025" rpy="1.57075 0.0 1.57075"/>
     </joint>
 
     <link name="head">
