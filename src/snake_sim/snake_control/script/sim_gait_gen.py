@@ -27,6 +27,7 @@ pub_com_16 = rospy.Publisher('/snake/16_joint_position_controller/command', data
 
 thetas = []
 count = 0
+os_delay_sec = rospy.Duration(nsecs=50000)
 delay_sec = rospy.Duration(nsecs=3000)
 phase_ver =  3.1415 / 6
 phase_hor =  3.1415 / 6
@@ -49,36 +50,67 @@ def motionCalculate():
     count+=1
 
 def commandSend():
+    rospy.sleep(os_delay_sec)
     pub_com_1.publish(thetas[0])
     rospy.sleep(delay_sec)
+
+    rospy.sleep(os_delay_sec)
     pub_com_2.publish(thetas[1])
     rospy.sleep(delay_sec)
+
+    rospy.sleep(os_delay_sec)
     pub_com_3.publish(thetas[2])
     rospy.sleep(delay_sec)
+
+    rospy.sleep(os_delay_sec)
     pub_com_4.publish(thetas[3])
     rospy.sleep(delay_sec)
+
+    rospy.sleep(os_delay_sec)
     pub_com_5.publish(thetas[4])
     rospy.sleep(delay_sec)
+
+    rospy.sleep(os_delay_sec)
     pub_com_6.publish(thetas[5])
     rospy.sleep(delay_sec)
+
+    rospy.sleep(os_delay_sec)
     pub_com_7.publish(thetas[6])
     rospy.sleep(delay_sec)
+
+    rospy.sleep(os_delay_sec)
     pub_com_8.publish(thetas[7])
     rospy.sleep(delay_sec)
+
+    rospy.sleep(os_delay_sec)
     pub_com_9.publish(thetas[8])
     rospy.sleep(delay_sec)
+
+    rospy.sleep(os_delay_sec)
     pub_com_10.publish(thetas[9])
     rospy.sleep(delay_sec)
+
+    rospy.sleep(os_delay_sec)
     pub_com_11.publish(thetas[10])
     rospy.sleep(delay_sec)
+
+    rospy.sleep(os_delay_sec)
     pub_com_12.publish(thetas[11])
     rospy.sleep(delay_sec)
+
+    rospy.sleep(os_delay_sec)
     pub_com_13.publish(thetas[12])
     rospy.sleep(delay_sec)
+
+    rospy.sleep(os_delay_sec)
     pub_com_14.publish(thetas[13])
     rospy.sleep(delay_sec)
+
+    rospy.sleep(os_delay_sec)
     pub_com_15.publish(thetas[14])
     rospy.sleep(delay_sec)
+
+    rospy.sleep(os_delay_sec)
     pub_com_16.publish(thetas[15])
     rospy.sleep(delay_sec)
 
@@ -90,7 +122,7 @@ if __name__ == '__main__':
         motionCalculate()
 
         commandSend()
-
+        rospy.sleep(delay_sec)
         rate.sleep()
         # rospy.sleep(0.5)
         # rospy.spin()
