@@ -3,10 +3,19 @@
 import rospy
 import sys
 import math
+import threading
 
+
+from gazebo_msgs.srv import SetPhysicsProperties
+from gazebo_msgs.msg import ODEPhysics
+
+
+from geometry_msgs.msg import Vector3
 from std_msgs.msg import String
 from std_msgs.msg import Float64
 from sensor_msgs.msg import Joy
+from std_srvs.srv import Empty
+
 
 pub_com_1 = rospy.Publisher('/snake/1_joint_position_controller/command', data_class=Float64, queue_size= 1)
 pub_com_2 = rospy.Publisher('/snake/2_joint_position_controller/command', data_class=Float64, queue_size= 1)
@@ -32,8 +41,65 @@ delay_sec = rospy.Duration(nsecs=3000)
 phase_ver =  3.1415 / 6
 phase_hor =  3.1415 / 6
 
+gazebo_pause = True
+
 for i in range(16):
     thetas.append(0)
+
+def pauseSimulation():
+    global gazebo_pause
+    if gazebo_pause:
+        rospy.wait_for_service('/gazebo/unpause_physics')
+        try:
+            unpause_gazebo = rospy.ServiceProxy('/gazebo/unpause_physics', Empty)
+            gazebo_pause = False
+            unpause_gazebo()
+            print('Gazebo Simulation is Starting Now...')
+        except rospy.ServiceException as exc:
+            print("Service did not process request: " + str(exc))
+    else:
+        rospy.wait_for_service('/gazebo/pause_physics')
+        try:
+            pause_gazebo = rospy.ServiceProxy('/gazebo/pause_physics', Empty)
+            gazebo_pause = True
+            pause_gazebo()
+            print('Gazebo Simulation is Stopping Now...')
+        except rospy.ServiceException as exc:
+            print("Service did not process request: " + str(exc))
+
+def resetWorld():
+    rospy.wait_for_service('/gazebo/reset_world')
+    try:
+        reset_world = rospy.ServiceProxy('/gazebo/reset_world', Empty)
+        reset_world()
+        print('World is reseted!')
+    except rospy.ServiceException as exc:
+        print("Service did not process request: " + str(exc))
+
+def clearSimulation():
+    pauseSimulation()
+    resetWorld()
+    pauseSimulation()
+
+def setTimer(sec = 5, func = clearSimulation):
+    threading.Timer(sec,func).start()
+
+def gazeboPhysicsSet(time_step_value = 0.001, max_update_rate_value = 1000):
+# Set as Default Gazebo Property
+    gravity_value = Vector3(x = 0, y = 0, z = -9.81)
+    ODE_value = ODEPhysics(auto_disable_bodies = False, sor_pgs_precon_iters = 0, sor_pgs_iters = 50, sor_pgs_w = 1.3, sor_pgs_rms_error_tol = 0, contact_surface_layer = 0.001, contact_max_correcting_vel = 100.0, cfm = 0.0, erp = 0.2, max_contacts = 20)
+
+    rospy.wait_for_service('/gazebo/set_physics_properties')
+    try:
+        set_physics_properties = rospy.ServiceProxy('/gazebo/set_physics_properties',SetPhysicsProperties)
+        service_result = set_physics_properties(max_update_rate = max_update_rate_value, time_step = time_step_value, gravity = gravity_value, ode_config = ODE_value)
+        if(service_result):
+            print('Physics properties is set as coded!')
+        else:
+            print('Service Does not Called!')
+    except rospy.ServiceException as exc:
+        print("Service did not process request: " + str(exc))
+
 
 def motionCalculate():
     global count
@@ -117,8 +183,20 @@ def commandSend():
 if __name__ == '__main__':
     rospy.init_node('snake_gait_generator',anonymous=True)
     rate = rospy.Rate(20)
+    pauseSimulation()
+
+    gazeboPhysicsSet(max_update_rate_value=5000)
+
+    t_prior = rospy.Time.now()
 
     while not rospy.is_shutdown():
+
+        t_now = rospy.Time.now()
+
+        if t_now - t_prior > rospy.Duration(secs=10):
+            t_prior =  t_now
+            clearSimulation()     
+
         motionCalculate()
 
         commandSend()
