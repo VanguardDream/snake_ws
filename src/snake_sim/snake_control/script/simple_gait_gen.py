@@ -21,7 +21,6 @@ from std_msgs.msg import Float64
 from sensor_msgs.msg import Joy
 from std_srvs.srv import Empty
 
-
 pub_com_1 = rospy.Publisher('/snake/1_joint_position_controller/command', data_class=Float64, queue_size= 1)
 pub_com_2 = rospy.Publisher('/snake/2_joint_position_controller/command', data_class=Float64, queue_size= 1)
 pub_com_3 = rospy.Publisher('/snake/3_joint_position_controller/command', data_class=Float64, queue_size= 1)
@@ -39,51 +38,17 @@ pub_com_14 = rospy.Publisher('/snake/14_joint_position_controller/command', data
 pub_com_15 = rospy.Publisher('/snake/15_joint_position_controller/command', data_class=Float64, queue_size= 1)
 pub_com_16 = rospy.Publisher('/snake/16_joint_position_controller/command', data_class=Float64, queue_size= 1)
 
-ros_secs = 0
-ros_nsecs = 0
-
-gazebo_model_pose_x = 0.0
-gazebo_model_pose_y = 0.0
-gazebo_model_pose_z = 0.0
-
-csv_file = open('sim_result.csv', 'a', encoding='utf-8', newline='')
-csv_file.close()
-sim_data_buffer = []
-
 thetas = []
 count = 0
-os_delay_sec = rospy.Duration(nsecs=50000)
+os_delay_sec = rospy.Duration(nsecs=200000)
 delay_sec = rospy.Duration(nsecs=3000)
-phase_ver =  (3.1415 / 180) * 30
-amp_ver = (3.1415 / 180) * 30
+phase_ver =  (3.1415 / 180) * 293
+amp_ver = (3.1415 / 180) * 76
 
 gazebo_pause = True
 
 for i in range(16):
     thetas.append(0)
-
-def callback_clock(data):
-    global ros_secs
-    global ros_nsecs
-    ros_secs = data.clock.secs
-    ros_nsecs = data.clock.nsecs
-
-def callback_states(data):
-    global ros_secs
-    global ros_nsecs
-
-    global gazebo_model_pose_x
-    global gazebo_model_pose_y
-    global gazebo_model_pose_z
-
-    global sim_data_buffer
-
-    gazebo_model_pose_x = data.pose[1].position.x
-    gazebo_model_pose_y = data.pose[1].position.y
-    gazebo_model_pose_z = data.pose[1].position.z
-
-    sim_data_buffer.append([ros_secs,ros_nsecs,gazebo_model_pose_x,gazebo_model_pose_y,gazebo_model_pose_z])
-    # print("%d | %d | %f" %(ros_secs,ros_nsecs,gazebo_model_pose_x),end='\n')
 
 def gazeboPhysicsSet(time_step_value = 0.001, max_update_rate_value = 1000):
 # Set as Default Gazebo Property
@@ -199,68 +164,6 @@ def commandSend():
     pub_com_16.publish(thetas[15])
     rospy.sleep(delay_sec)
 
-def clearSimulation():
-    global csv_file
-    global sim_data_buffer
-    global amp_ver
-    global phase_ver
-    global os_delay_sec
-
-    commandZero()
-
-    rospy.sleep(rospy.Duration(3.0))
-
-    pauseSimulation()
-
-    diff_x = []
-    diff_y = []
-    diff_z = []
-    final_x = 0
-    final_y = 0
-    final_z = 0
-
-    for i in range(len(sim_data_buffer)):
-        diff_x.append(sim_data_buffer[i][2])
-        diff_y.append(sim_data_buffer[i][3])
-        diff_z.append(sim_data_buffer[i][4])
-
-    if abs(min(diff_x)) > abs(max(diff_x)):
-        final_x = min(diff_x)
-    else:
-        final_x = max(diff_x)
-
-    if abs(min(diff_y)) > abs(max(diff_y)):
-        final_y = min(diff_y)
-    else:
-        final_y = max(diff_y)
-
-    if abs(min(diff_z)) > abs(max(diff_z)):
-        final_z = min(diff_z)
-    else:
-        final_z = max(diff_z)
-
-    csv_line_writer = csv.writer(csv_file)
-
-    csv_line_writer.writerow([os_delay_sec.to_sec(),amp_ver / (3.1415 /180),phase_ver / (3.1415 /180),"end",final_x,final_y,final_z])
-
-    csv_file.close()
-    
-    resetWorld()
-    
-    amp_ver = random.randint(0,90) * (3.1415 /180)
-    phase_ver = random.randint(0,360) * (3.1415 /180)
-    tmp_sec = random.randint(0,100)
-    os_delay_sec = rospy.Duration(nsecs = tmp_sec * 10000)
-
-    csv_file = open('sim_result.csv', 'a', encoding='utf-8', newline='')
-    csv_line_writer = csv.writer(csv_file)
-    #csv_line_writer.writerows(sim_data_buffer)
-    sim_data_buffer.clear()
-
-    csv_line_writer.writerow([str(time.strftime('%c', time.localtime(time.time()))),os_delay_sec.to_sec(),amp_ver / (3.1415 /180),phase_ver / (3.1415 /180),"start"])
-
-    pauseSimulation()
-
 def pauseSimulation():
     global gazebo_pause
     if gazebo_pause:
@@ -291,33 +194,16 @@ def resetWorld():
     except rospy.ServiceException as exc:
         print("Service did not process request: " + str(exc))
 
-def setTimer(sec = 5, func = clearSimulation):
-    threading.Timer(sec,func).start()
 
 
 if __name__ == '__main__':
-    sub_clock = rospy.Subscriber('/clock',Clock,callback_clock,queue_size=1000)
-    sub_model_states = rospy.Subscriber('/gazebo/model_states',ModelStates,callback_states,queue_size=1000)
-
-    csv_file = open('sim_result.csv', 'a', encoding='utf-8', newline='')
-    csv_line_writer = csv.writer(csv_file)
-    csv_line_writer.writerow([str(time.strftime('%c', time.localtime(time.time()))),os_delay_sec.to_sec(),amp_ver / (3.1415 /180),phase_ver / (3.1415 /180),"start"])
-
     rospy.init_node('snake_gait_generator',anonymous=True)
     rate = rospy.Rate(20)
     pauseSimulation()
 
     gazeboPhysicsSet(max_update_rate_value=3000)
 
-    t_prior = rospy.Time.now()
-
     while not rospy.is_shutdown():
-
-        t_now = rospy.Time.now()
-
-        if t_now - t_prior > rospy.Duration(secs=10):
-            t_prior =  t_now
-            clearSimulation()     
 
         motionCalculate()
 
@@ -326,5 +212,3 @@ if __name__ == '__main__':
         rate.sleep()
         # rospy.sleep(0.5)
         # rospy.spin()
-        
-        
