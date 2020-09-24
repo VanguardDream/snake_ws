@@ -1,0 +1,557 @@
+<?xml version = '1.0'?>
+
+<sdf version ='1.4'>
+	<model name="kiro_robot">
+
+	<!--It is easy in first make model static.-->
+	<static>true</static>
+
+	<link name='head'>
+		<pose>0 0 .035 0 -1.57 0</pose>
+
+		<collision name='head_collision'>
+			<geometry>
+				<cylinder>
+					<radius>.035</radius>
+					<length>.13</length>
+				</cylinder>
+			</geometry>
+		</collision>
+
+		<visual name='head_visual'>
+			<geometry>
+				<cylinder>
+					<radius>.035</radius>
+					<length>.13</length>
+				</cylinder>
+			</geometry>
+		</visual>
+
+		<visual name='head_pad_visual'>
+			<pose> -0.025 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.02 0.035 0.13</size>
+				</box>
+			</geometry>
+		</visual>
+
+		<collision name='head_pad_collision'>
+			<pose> -0.025 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.02 0.035 0.13</size>
+				</box>
+			</geometry>
+		</collision>
+	</link>
+
+	<link name='body1'>
+		<pose>-0.1 0 .035 0 -1.57 0</pose>
+
+		<collision name='body1_collision'>
+			<geometry>
+				<cylinder>
+					<radius>.035</radius>
+					<length>.13</length>
+				</cylinder>
+			</geometry>
+		</collision>
+
+		<visual name='body1_visual'>
+			<geometry>
+				<cylinder>
+					<radius>.035</radius>
+					<length>.13</length>
+				</cylinder>
+			</geometry>
+			<material>
+			<ambient>0 0 0.75 1</ambient>
+			<diffuse>0 0 0.75 1</diffuse>
+			</material>
+		</visual>
+
+		<visual name='body1_pad_visual'>
+			<pose> -0.025 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.02 0.035 0.13</size>
+				</box>
+			</geometry>
+			<material>
+			<ambient>0 0 0.75 1</ambient>
+			<diffuse>0 0 0.75 1</diffuse>
+			</material>
+		</visual>
+
+		<collision name='body1_pad_collision'>
+			<pose> -0.06 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.02 0.035 0.13</size>
+				</box>
+			</geometry>
+		</collision>
+	</link>
+
+	<link name='body2'>
+		<pose>-0.2 0 .035 0 -1.57 0</pose>
+
+		<collision name='body2_collision'>
+			<geometry>
+				<cylinder>
+					<radius>.035</radius>
+					<length>.13</length>
+				</cylinder>
+			</geometry>
+		</collision>
+
+		<visual name='body2_visual'>
+			<geometry>
+				<cylinder>
+					<radius>.035</radius>
+					<length>.13</length>
+				</cylinder>
+			</geometry>
+		</visual>
+
+		<visual name='body2_pad_visual'>
+			<pose> -0.025 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.02 0.035 0.13</size>
+				</box>
+			</geometry>
+		</visual>
+
+		<collision name='body2_pad_collision'>
+			<pose> -0.06 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.02 0.035 0.13</size>
+				</box>
+			</geometry>
+		</collision>
+	</link>
+
+	<link name='body3'>
+		<pose>-0.3 0 .035 0 -1.57 0</pose>
+
+		<collision name='body3_collision'>
+			<geometry>
+				<cylinder>
+					<radius>.035</radius>
+					<length>.13</length>
+				</cylinder>
+			</geometry>
+		</collision>
+
+		<visual name='body3_visual'>
+			<geometry>
+				<cylinder>
+					<radius>.035</radius>
+					<length>.13</length>
+				</cylinder>
+			</geometry>
+			<material>
+			<ambient>0 0 0.75 1</ambient>
+			<diffuse>0 0 0.75 1</diffuse>
+			</material>
+		</visual>
+
+		<visual name='body3_pad_visual'>
+			<pose> -0.025 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.02 0.035 0.13</size>
+				</box>
+			</geometry>
+			<material>
+			<ambient>0 0 0.75 1</ambient>
+			<diffuse>0 0 0.75 1</diffuse>
+			</material>
+		</visual>
+
+		<collision name='body3_pad_collision'>
+			<pose> -0.06 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.02 0.035 0.13</size>
+				</box>
+			</geometry>
+		</collision>
+	</link>
+
+	<link name='body4'>
+		<pose>-0.4 0 .035 0 -1.57 0</pose>
+
+		<collision name='body4_collision'>
+			<geometry>
+				<cylinder>
+					<radius>.035</radius>
+					<length>.13</length>
+				</cylinder>
+			</geometry>
+		</collision>
+
+		<visual name='body4_visual'>
+			<geometry>
+				<cylinder>
+					<radius>.035</radius>
+					<length>.13</length>
+				</cylinder>
+			</geometry>
+		</visual>
+
+		<visual name='body4_pad_visual'>
+			<pose> -0.025 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.02 0.035 0.13</size>
+				</box>
+			</geometry>
+		</visual>
+
+		<collision name='body4_pad_collision'>
+			<pose> -0.06 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.02 0.035 0.13</size>
+				</box>
+			</geometry>
+		</collision>
+	</link>
+
+	<link name='body5'>
+		<pose>-0.5 0 .035 0 -1.57 0</pose>
+
+		<collision name='body5_collision'>
+			<geometry>
+				<cylinder>
+					<radius>.035</radius>
+					<length>.13</length>
+				</cylinder>
+			</geometry>
+		</collision>
+
+		<visual name='body5_visual'>
+			<geometry>
+				<cylinder>
+					<radius>.035</radius>
+					<length>.13</length>
+				</cylinder>
+			</geometry>
+			<material>
+			<ambient>0 0 0.75 1</ambient>
+			<diffuse>0 0 0.75 1</diffuse>
+			</material>
+		</visual>
+
+		<visual name='body5_pad_visual'>
+			<pose> -0.025 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.02 0.035 0.13</size>
+				</box>
+			</geometry>
+			<material>
+			<ambient>0 0 0.75 1</ambient>
+			<diffuse>0 0 0.75 1</diffuse>
+			</material>
+		</visual>
+
+		<collision name='body5_pad_collision'>
+			<pose> -0.06 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.02 0.035 0.13</size>
+				</box>
+			</geometry>
+		</collision>
+	</link>
+
+	<link name='body6'>
+		<pose>-0.6 0 .035 0 -1.57 0</pose>
+
+		<collision name='body6_collision'>
+			<geometry>
+				<cylinder>
+					<radius>.035</radius>
+					<length>.13</length>
+				</cylinder>
+			</geometry>
+		</collision>
+
+		<visual name='body6_visual'>
+			<geometry>
+				<cylinder>
+					<radius>.035</radius>
+					<length>.13</length>
+				</cylinder>
+			</geometry>
+		</visual>
+
+		<visual name='body6_pad_visual'>
+			<pose> -0.025 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.02 0.035 0.13</size>
+				</box>
+			</geometry>
+		</visual>
+
+		<collision name='body6_pad_collision'>
+			<pose> -0.06 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.02 0.035 0.13</size>
+				</box>
+			</geometry>
+		</collision>
+	</link>
+
+	<link name='body7'>
+		<pose>-0.7 0 .035 0 -1.57 0</pose>
+
+		<collision name='body7_collision'>
+			<geometry>
+				<cylinder>
+					<radius>.035</radius>
+					<length>.13</length>
+				</cylinder>
+			</geometry>
+		</collision>
+
+		<visual name='body7_visual'>
+			<geometry>
+				<cylinder>
+					<radius>.035</radius>
+					<length>.13</length>
+				</cylinder>
+			</geometry>
+			<material>
+			<ambient>0 0 0.75 1</ambient>
+			<diffuse>0 0 0.75 1</diffuse>
+			</material>
+		</visual>
+
+		<visual name='body7_pad_visual'>
+			<pose> -0.025 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.02 0.035 0.13</size>
+				</box>
+			</geometry>
+			<material>
+			<ambient>0 0 0.75 1</ambient>
+			<diffuse>0 0 0.75 1</diffuse>
+			</material>
+		</visual>
+
+		<collision name='body7_pad_collision'>
+			<pose> -0.06 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.02 0.035 0.13</size>
+				</box>
+			</geometry>
+		</collision>
+	</link>
+
+	<link name='body8'>
+		<pose>-0.8 0 .035 0 -1.57 0</pose>
+
+		<collision name='body8_collision'>
+			<geometry>
+				<cylinder>
+					<radius>.035</radius>
+					<length>.13</length>
+				</cylinder>
+			</geometry>
+		</collision>
+
+		<visual name='body8_visual'>
+			<geometry>
+				<cylinder>
+					<radius>.035</radius>
+					<length>.13</length>
+				</cylinder>
+			</geometry>
+		</visual>
+
+		<visual name='body8_pad_visual'>
+			<pose> -0.025 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.02 0.035 0.13</size>
+				</box>
+			</geometry>
+		</visual>
+
+		<collision name='body8_pad_collision'>
+			<pose> -0.06 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.02 0.035 0.13</size>
+				</box>
+			</geometry>
+		</collision>
+	</link>
+
+	<link name='body9'>
+		<pose>-0.9 0 .035 0 -1.57 0</pose>
+
+		<collision name='body9_collision'>
+			<geometry>
+				<cylinder>
+					<radius>.035</radius>
+					<length>.13</length>
+				</cylinder>
+			</geometry>
+		</collision>
+
+		<visual name='body9_visual'>
+			<geometry>
+				<cylinder>
+					<radius>.035</radius>
+					<length>.13</length>
+				</cylinder>
+			</geometry>
+			<material>
+			<ambient>0 0 0.75 1</ambient>
+			<diffuse>0 0 0.75 1</diffuse>
+			</material>
+		</visual>
+
+		<visual name='body9_pad_visual'>
+			<pose> -0.025 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.02 0.035 0.13</size>
+				</box>
+			</geometry>
+			<material>
+			<ambient>0 0 0.75 1</ambient>
+			<diffuse>0 0 0.75 1</diffuse>
+			</material>
+		</visual>
+
+		<collision name='body9_pad_collision'>
+			<pose> -0.06 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.02 0.035 0.13</size>
+				</box>
+			</geometry>
+		</collision>
+	</link>
+
+	<link name='body10'>
+		<pose>-1.0 0 .035 0 -1.57 0</pose>
+
+		<collision name='body10_collision'>
+			<geometry>
+				<cylinder>
+					<radius>.035</radius>
+					<length>.13</length>
+				</cylinder>
+			</geometry>
+		</collision>
+
+		<visual name='body10_visual'>
+			<geometry>
+				<cylinder>
+					<radius>.035</radius>
+					<length>.13</length>
+				</cylinder>
+			</geometry>
+		</visual>
+
+		<visual name='body10_pad_visual'>
+			<pose> -0.025 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.02 0.035 0.13</size>
+				</box>
+			</geometry>
+		</visual>
+
+		<collision name='body10_pad_collision'>
+			<pose> -0.06 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.02 0.035 0.13</size>
+				</box>
+			</geometry>
+		</collision>
+	</link>
+
+	<link name='tail'>
+		<pose>-1.1 0 .035 0 -1.57 0</pose>
+
+		<collision name='tail_collision'>
+			<geometry>
+				<cylinder>
+					<radius>.035</radius>
+					<length>.13</length>
+				</cylinder>
+			</geometry>
+		</collision>
+
+		<visual name='tail_visual'>
+			<geometry>
+				<cylinder>
+					<radius>.035</radius>
+					<length>.13</length>
+				</cylinder>
+			</geometry>
+			<material>
+			<ambient>0 0 0.75 1</ambient>
+			<diffuse>0 0 0.75 1</diffuse>
+			</material>
+		</visual>
+
+		<visual name='tail_pad_visual'>
+			<pose> -0.025 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.02 0.035 0.13</size>
+				</box>
+			</geometry>
+			<material>
+			<ambient>0 0 0.75 1</ambient>
+			<diffuse>0 0 0.75 1</diffuse>
+			</material>
+		</visual>
+
+		<collision name='tail_pad_collision'>
+			<pose> -0.06 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.02 0.035 0.13</size>
+				</box>
+			</geometry>
+		</collision>
+	</link>
+<!-- 
+	<joint type="revolute" name="joint1">
+		<pose>0.05 0 0.035 0 0 0</pose>
+		<child>head</child>
+		<parent>body1</parent>
+		<axis>
+			<xyz>0 1 0</xyz>
+		</axix>
+	</joint> -->
+
+	<joint type="revolute" name="joint1">
+        <pose>0 0 0.05 0 0 0</pose>
+        <child>head</child>
+        <parent>body1</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+        </axis>
+    </joint>
+
+	<!--Hardlink created here-->
+	</model>
+</sdf>
