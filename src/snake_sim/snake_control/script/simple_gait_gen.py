@@ -40,10 +40,10 @@ pub_com_16 = rospy.Publisher('/snake/16_joint_position_controller/command', data
 
 thetas = []
 count = 0
-os_delay_sec = rospy.Duration(nsecs=200000)
+os_delay_sec = rospy.Duration(nsecs=800000)
 delay_sec = rospy.Duration(nsecs=3000)
-phase_ver =  (3.1415 / 180) * 293
-amp_ver = (3.1415 / 180) * 76
+phase_ver =  (3.1415 / 180) * 300
+amp_ver = (3.1415 / 180) * 45
 
 gazebo_pause = True
 
