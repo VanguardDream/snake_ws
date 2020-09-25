@@ -1,0 +1,452 @@
+<?xml version="1.0" ?>
+<robot name="kiro_robot">
+  <joint name="kiro_robot__joint1" type="revolute">
+    <parent link="kiro_robot__body1"/>
+    <child link="kiro_robot__head"/>
+    <origin rpy="0  0  0" xyz="8.00000000e-05   0.00000000e+00  -1.00000000e-01"/>
+    <axis xyz="0  1  0"/>
+    <limit effort="0.0" lower="-1.22173" upper="1.22173" velocity="8.16814"/>
+  </joint>
+  <joint name="kiro_robot__joint2" type="revolute">
+    <parent link="kiro_robot__body2"/>
+    <child link="kiro_robot__body1"/>
+    <origin rpy="0  0  0" xyz="8.00000000e-05   0.00000000e+00  -1.00000000e-01"/>
+    <axis xyz="1.00000000e+00   0.00000000e+00   7.90000000e-04"/>
+    <limit effort="0.0" lower="-1.22173" upper="1.22173" velocity="8.16814"/>
+  </joint>
+  <joint name="kiro_robot__joint3" type="revolute">
+    <parent link="kiro_robot__body3"/>
+    <child link="kiro_robot__body2"/>
+    <origin rpy="0  0  0" xyz="8.00000000e-05   0.00000000e+00  -1.00000000e-01"/>
+    <axis xyz="0  1  0"/>
+    <limit effort="0.0" lower="-1.22173" upper="1.22173" velocity="8.16814"/>
+  </joint>
+  <joint name="kiro_robot__joint4" type="revolute">
+    <parent link="kiro_robot__body4"/>
+    <child link="kiro_robot__body3"/>
+    <origin rpy="0  0  0" xyz="8.00000000e-05   0.00000000e+00  -1.00000000e-01"/>
+    <axis xyz="1.00000000e+00   0.00000000e+00   7.90000000e-04"/>
+    <limit effort="0.0" lower="-1.22173" upper="1.22173" velocity="8.16814"/>
+  </joint>
+  <joint name="kiro_robot__joint5" type="revolute">
+    <parent link="kiro_robot__body5"/>
+    <child link="kiro_robot__body4"/>
+    <origin rpy="0  0  0" xyz="8.00000000e-05   0.00000000e+00  -1.00000000e-01"/>
+    <axis xyz="0  1  0"/>
+    <limit effort="0.0" lower="-1.22173" upper="1.22173" velocity="8.16814"/>
+  </joint>
+  <joint name="kiro_robot__joint6" type="revolute">
+    <parent link="kiro_robot__body6"/>
+    <child link="kiro_robot__body5"/>
+    <origin rpy="0  0  0" xyz="8.00000000e-05   0.00000000e+00  -1.00000000e-01"/>
+    <axis xyz="1.00000000e+00   0.00000000e+00   7.90000000e-04"/>
+    <limit effort="0.0" lower="-1.22173" upper="1.22173" velocity="8.16814"/>
+  </joint>
+  <joint name="kiro_robot__joint7" type="revolute">
+    <parent link="kiro_robot__body7"/>
+    <child link="kiro_robot__body6"/>
+    <origin rpy="0  0  0" xyz="8.00000000e-05   0.00000000e+00  -1.00000000e-01"/>
+    <axis xyz="0  1  0"/>
+    <limit effort="0.0" lower="-1.22173" upper="1.22173" velocity="8.16814"/>
+  </joint>
+  <joint name="kiro_robot__joint8" type="revolute">
+    <parent link="kiro_robot__body8"/>
+    <child link="kiro_robot__body7"/>
+    <origin rpy="0  0  0" xyz="8.00000000e-05   0.00000000e+00  -1.00000000e-01"/>
+    <axis xyz="1.00000000e+00   0.00000000e+00   7.90000000e-04"/>
+    <limit effort="0.0" lower="-1.22173" upper="1.22173" velocity="8.16814"/>
+  </joint>
+  <joint name="kiro_robot__joint9" type="revolute">
+    <parent link="kiro_robot__body9"/>
+    <child link="kiro_robot__body8"/>
+    <origin rpy="0  0  0" xyz="8.00000000e-05   0.00000000e+00  -1.00000000e-01"/>
+    <axis xyz="0  1  0"/>
+    <limit effort="0.0" lower="-1.22173" upper="1.22173" velocity="8.16814"/>
+  </joint>
+  <joint name="kiro_robot__joint10" type="revolute">
+    <parent link="kiro_robot__body10"/>
+    <child link="kiro_robot__body9"/>
+    <origin rpy="0  0  0" xyz="8.00000000e-05   0.00000000e+00  -1.00000000e-01"/>
+    <axis xyz="0  1  0"/>
+    <limit effort="0.0" lower="-1.22173" upper="1.22173" velocity="8.16814"/>
+  </joint>
+  <joint name="kiro_robot__joint11" type="revolute">
+    <parent link="kiro_robot__tail"/>
+    <child link="kiro_robot__body10"/>
+    <origin rpy="0   -1.57  0" xyz="-1.05     0       0.03504"/>
+    <axis xyz="0  1  0"/>
+    <limit effort="0.0" lower="-1.22173" upper="1.22173" velocity="8.16814"/>
+  </joint>
+  <link name="kiro_robot__head">
+    <inertial>
+      <mass value="0"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <collision name="kiro_robot__head_collision">
+      <origin rpy="0  0  0" xyz="0     0    -0.075"/>
+      <geometry>
+        <cylinder length=".08" radius=".035"/>
+      </geometry>
+    </collision>
+    <collision name="kiro_robot__head_pad_collision">
+      <origin rpy="0  0  0" xyz="-0.025  0    -0.075"/>
+      <geometry>
+        <box size="0.02 0.035 0.08"/>
+      </geometry>
+    </collision>
+    <visual name="kiro_robot__head_visual">
+      <origin rpy="0  0  0" xyz="0    0   -0.05"/>
+      <geometry>
+        <cylinder length=".13" radius=".035"/>
+      </geometry>
+    </visual>
+    <visual name="kiro_robot__head_pad_visual">
+      <origin rpy="0  0  0" xyz="-0.025  0    -0.05"/>
+      <geometry>
+        <box size="0.02 0.035 0.13"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="kiro_robot__body1">
+    <inertial>
+      <mass value="0"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <collision name="kiro_robot__body1_collision">
+      <origin rpy="0  0  0" xyz="0     0    -0.075"/>
+      <geometry>
+        <cylinder length=".08" radius=".035"/>
+      </geometry>
+    </collision>
+    <collision name="kiro_robot__body1_pad_collision">
+      <origin rpy="0  0  0" xyz="-0.025  0    -0.075"/>
+      <geometry>
+        <box size="0.02 0.035 0.08"/>
+      </geometry>
+    </collision>
+    <visual name="kiro_robot__body1_visual">
+      <origin rpy="0  0  0" xyz="0    0   -0.05"/>
+      <geometry>
+        <cylinder length=".13" radius=".035"/>
+      </geometry>
+    </visual>
+    <visual name="kiro_robot__body1_pad_visual">
+      <origin rpy="0  0  0" xyz="-0.025  0    -0.05"/>
+      <geometry>
+        <box size="0.02 0.035 0.13"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="kiro_robot__body2">
+    <inertial>
+      <mass value="0"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <collision name="kiro_robot__body2_collision">
+      <origin rpy="0  0  0" xyz="0     0    -0.075"/>
+      <geometry>
+        <cylinder length=".08" radius=".035"/>
+      </geometry>
+    </collision>
+    <collision name="kiro_robot__body2_pad_collision">
+      <origin rpy="0  0  0" xyz="-0.025  0    -0.075"/>
+      <geometry>
+        <box size="0.02 0.035 0.08"/>
+      </geometry>
+    </collision>
+    <visual name="kiro_robot__body2_visual">
+      <origin rpy="0  0  0" xyz="0    0   -0.05"/>
+      <geometry>
+        <cylinder length=".13" radius=".035"/>
+      </geometry>
+    </visual>
+    <visual name="kiro_robot__body2_pad_visual">
+      <origin rpy="0  0  0" xyz="-0.025  0    -0.05"/>
+      <geometry>
+        <box size="0.02 0.035 0.13"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="kiro_robot__body3">
+    <inertial>
+      <mass value="0"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <collision name="kiro_robot__body3_collision">
+      <origin rpy="0  0  0" xyz="0     0    -0.075"/>
+      <geometry>
+        <cylinder length=".08" radius=".035"/>
+      </geometry>
+    </collision>
+    <collision name="kiro_robot__body3_pad_collision">
+      <origin rpy="0  0  0" xyz="-0.025  0    -0.075"/>
+      <geometry>
+        <box size="0.02 0.035 0.08"/>
+      </geometry>
+    </collision>
+    <visual name="kiro_robot__body3_visual">
+      <origin rpy="0  0  0" xyz="0    0   -0.05"/>
+      <geometry>
+        <cylinder length=".13" radius=".035"/>
+      </geometry>
+    </visual>
+    <visual name="kiro_robot__body3_pad_visual">
+      <origin rpy="0  0  0" xyz="-0.025  0    -0.05"/>
+      <geometry>
+        <box size="0.02 0.035 0.13"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="kiro_robot__body4">
+    <inertial>
+      <mass value="0"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <collision name="kiro_robot__body4_collision">
+      <origin rpy="0  0  0" xyz="0     0    -0.075"/>
+      <geometry>
+        <cylinder length=".08" radius=".035"/>
+      </geometry>
+    </collision>
+    <collision name="kiro_robot__body4_pad_collision">
+      <origin rpy="0  0  0" xyz="-0.025  0    -0.075"/>
+      <geometry>
+        <box size="0.02 0.035 0.08"/>
+      </geometry>
+    </collision>
+    <visual name="kiro_robot__body4_visual">
+      <origin rpy="0  0  0" xyz="0    0   -0.05"/>
+      <geometry>
+        <cylinder length=".13" radius=".035"/>
+      </geometry>
+    </visual>
+    <visual name="kiro_robot__body4_pad_visual">
+      <origin rpy="0  0  0" xyz="-0.025  0    -0.05"/>
+      <geometry>
+        <box size="0.02 0.035 0.13"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="kiro_robot__body5">
+    <inertial>
+      <mass value="0"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <collision name="kiro_robot__body5_collision">
+      <origin rpy="0  0  0" xyz="0     0    -0.075"/>
+      <geometry>
+        <cylinder length=".08" radius=".035"/>
+      </geometry>
+    </collision>
+    <collision name="kiro_robot__body5_pad_collision">
+      <origin rpy="0  0  0" xyz="-0.025  0    -0.075"/>
+      <geometry>
+        <box size="0.02 0.035 0.08"/>
+      </geometry>
+    </collision>
+    <visual name="kiro_robot__body5_visual">
+      <origin rpy="0  0  0" xyz="0    0   -0.05"/>
+      <geometry>
+        <cylinder length=".13" radius=".035"/>
+      </geometry>
+    </visual>
+    <visual name="kiro_robot__body5_pad_visual">
+      <origin rpy="0  0  0" xyz="-0.025  0    -0.05"/>
+      <geometry>
+        <box size="0.02 0.035 0.13"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="kiro_robot__body6">
+    <inertial>
+      <mass value="0"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <collision name="kiro_robot__body6_collision">
+      <origin rpy="0  0  0" xyz="0     0    -0.075"/>
+      <geometry>
+        <cylinder length=".08" radius=".035"/>
+      </geometry>
+    </collision>
+    <collision name="kiro_robot__body6_pad_collision">
+      <origin rpy="0  0  0" xyz="-0.025  0    -0.075"/>
+      <geometry>
+        <box size="0.02 0.035 0.08"/>
+      </geometry>
+    </collision>
+    <visual name="kiro_robot__body6_visual">
+      <origin rpy="0  0  0" xyz="0    0   -0.05"/>
+      <geometry>
+        <cylinder length=".13" radius=".035"/>
+      </geometry>
+    </visual>
+    <visual name="kiro_robot__body6_pad_visual">
+      <origin rpy="0  0  0" xyz="-0.025  0    -0.05"/>
+      <geometry>
+        <box size="0.02 0.035 0.13"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="kiro_robot__body7">
+    <inertial>
+      <mass value="0"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <collision name="kiro_robot__body7_collision">
+      <origin rpy="0  0  0" xyz="0     0    -0.075"/>
+      <geometry>
+        <cylinder length=".08" radius=".035"/>
+      </geometry>
+    </collision>
+    <collision name="kiro_robot__body7_pad_collision">
+      <origin rpy="0  0  0" xyz="-0.025  0    -0.075"/>
+      <geometry>
+        <box size="0.02 0.035 0.08"/>
+      </geometry>
+    </collision>
+    <visual name="kiro_robot__body7_visual">
+      <origin rpy="0  0  0" xyz="0    0   -0.05"/>
+      <geometry>
+        <cylinder length=".13" radius=".035"/>
+      </geometry>
+    </visual>
+    <visual name="kiro_robot__body7_pad_visual">
+      <origin rpy="0  0  0" xyz="-0.025  0    -0.05"/>
+      <geometry>
+        <box size="0.02 0.035 0.13"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="kiro_robot__body8">
+    <inertial>
+      <mass value="0"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <collision name="kiro_robot__body8_collision">
+      <origin rpy="0  0  0" xyz="0     0    -0.075"/>
+      <geometry>
+        <cylinder length=".08" radius=".035"/>
+      </geometry>
+    </collision>
+    <collision name="kiro_robot__body8_pad_collision">
+      <origin rpy="0  0  0" xyz="-0.025  0    -0.075"/>
+      <geometry>
+        <box size="0.02 0.035 0.08"/>
+      </geometry>
+    </collision>
+    <visual name="kiro_robot__body8_visual">
+      <origin rpy="0  0  0" xyz="0    0   -0.05"/>
+      <geometry>
+        <cylinder length=".13" radius=".035"/>
+      </geometry>
+    </visual>
+    <visual name="kiro_robot__body8_pad_visual">
+      <origin rpy="0  0  0" xyz="-0.025  0    -0.05"/>
+      <geometry>
+        <box size="0.02 0.035 0.13"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="kiro_robot__body9">
+    <inertial>
+      <mass value="0"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <collision name="kiro_robot__body9_collision">
+      <origin rpy="0  0  0" xyz="0     0    -0.075"/>
+      <geometry>
+        <cylinder length=".08" radius=".035"/>
+      </geometry>
+    </collision>
+    <collision name="kiro_robot__body9_pad_collision">
+      <origin rpy="0  0  0" xyz="-0.025  0    -0.075"/>
+      <geometry>
+        <box size="0.02 0.035 0.08"/>
+      </geometry>
+    </collision>
+    <visual name="kiro_robot__body9_visual">
+      <origin rpy="0  0  0" xyz="0    0   -0.05"/>
+      <geometry>
+        <cylinder length=".13" radius=".035"/>
+      </geometry>
+    </visual>
+    <visual name="kiro_robot__body9_pad_visual">
+      <origin rpy="0  0  0" xyz="-0.025  0    -0.05"/>
+      <geometry>
+        <box size="0.02 0.035 0.13"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="kiro_robot__body10">
+    <inertial>
+      <mass value="0"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <collision name="kiro_robot__body10_collision">
+      <origin rpy="0  0  0" xyz="0     0    -0.075"/>
+      <geometry>
+        <cylinder length=".08" radius=".035"/>
+      </geometry>
+    </collision>
+    <collision name="kiro_robot__body10_pad_collision">
+      <origin rpy="0  0  0" xyz="-0.025  0    -0.075"/>
+      <geometry>
+        <box size="0.02 0.035 0.08"/>
+      </geometry>
+    </collision>
+    <visual name="kiro_robot__body10_visual">
+      <origin rpy="0  0  0" xyz="0    0   -0.05"/>
+      <geometry>
+        <cylinder length=".13" radius=".035"/>
+      </geometry>
+    </visual>
+    <visual name="kiro_robot__body10_pad_visual">
+      <origin rpy="0  0  0" xyz="-0.025  0    -0.05"/>
+      <geometry>
+        <box size="0.02 0.035 0.13"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="kiro_robot__tail">
+    <inertial>
+      <mass value="0"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <collision name="kiro_robot__tail_collision">
+      <origin rpy="0   -1.57  0" xyz="-1.1    0     0.035"/>
+      <geometry>
+        <cylinder length=".13" radius=".035"/>
+      </geometry>
+    </collision>
+    <collision name="kiro_robot__tail_pad_collision">
+      <origin rpy="0   -1.57  0" xyz="-1.10002  0       0.01"/>
+      <geometry>
+        <box size="0.02 0.035 0.13"/>
+      </geometry>
+    </collision>
+    <visual name="kiro_robot__tail_visual">
+      <origin rpy="0   -1.57  0" xyz="-1.1    0     0.035"/>
+      <geometry>
+        <cylinder length=".13" radius=".035"/>
+      </geometry>
+    </visual>
+    <visual name="kiro_robot__tail_pad_visual">
+      <origin rpy="0   -1.57  0" xyz="-1.10002  0       0.01"/>
+      <geometry>
+        <box size="0.02 0.035 0.13"/>
+      </geometry>
+    </visual>
+  </link>
+</robot>
