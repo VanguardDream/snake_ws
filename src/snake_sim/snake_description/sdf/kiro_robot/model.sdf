@@ -556,9 +556,9 @@
 	</joint> -->
 
 	<joint type="revolute" name="joint1">
-        <pose>0 0 0.05 0 0 0</pose>
-        <child>head</child>
-        <parent>body1</parent>
+        <pose>0 0 -0.05 0 0 0</pose>
+        <parent>head</parent>
+        <child>body1</child>
         <axis>
           <xyz>0 1 0</xyz>
 			<limit>
@@ -571,9 +571,9 @@
     </joint>
 
 	<joint type="revolute" name="joint2">
-        <pose>0 0 0.05 0 0 0</pose>
-        <child>body1</child>
-        <parent>body2</parent>
+        <pose>0 0 -0.05 0 0 0</pose>
+        <parent>body1</parent>
+        <child>body2</child>
         <axis>
           <xyz>0 0 1</xyz>
 			<limit>
@@ -586,9 +586,9 @@
     </joint>
 
 	<joint type="revolute" name="joint3">
-        <pose>0 0 0.05 0 0 0</pose>
-        <child>body2</child>
-        <parent>body3</parent>
+        <pose>0 0 -0.05 0 0 0</pose>
+        <parent>body2</parent>
+        <child>body3</child>
         <axis>
           <xyz>0 1 0</xyz>
 			<limit>
@@ -601,9 +601,9 @@
     </joint>
 
 	<joint type="revolute" name="joint4">
-        <pose>0 0 0.05 0 0 0</pose>
-        <child>body3</child>
-        <parent>body4</parent>
+        <pose>0 0 -0.05 0 0 0</pose>
+        <parent>body3</parent>
+        <child>body4</child>
         <axis>
           <xyz>0 0 1</xyz>
 			<limit>
@@ -616,9 +616,9 @@
     </joint>
 
 	<joint type="revolute" name="joint5">
-        <pose>0 0 0.05 0 0 0</pose>
-        <child>body4</child>
-        <parent>body5</parent>
+        <pose>0 0 -0.05 0 0 0</pose>
+        <parent>body4</parent>
+        <child>body5</child>
         <axis>
           <xyz>0 1 0</xyz>
 			<limit>
@@ -631,9 +631,9 @@
     </joint>
 
 	<joint type="revolute" name="joint6">
-        <pose>0 0 0.05 0 0 0</pose>
-        <child>body5</child>
-        <parent>body6</parent>
+        <pose>0 0 -0.05 0 0 0</pose>
+        <parent>body5</parent>
+        <child>body6</child>
         <axis>
           <xyz>0 0 1</xyz>
 			<limit>
@@ -646,9 +646,9 @@
     </joint>
 
 	<joint type="revolute" name="joint7">
-        <pose>0 0 0.05 0 0 0</pose>
-        <child>body6</child>
-        <parent>body7</parent>
+        <pose>0 0 -0.05 0 0 0</pose>
+        <parent>body6</parent>
+        <child>body7</child>
         <axis>
           <xyz>0 1 0</xyz>
 			<limit>
@@ -661,9 +661,9 @@
     </joint>
 
 	<joint type="revolute" name="joint8">
-        <pose>0 0 0.05 0 0 0</pose>
-        <child>body7</child>
-        <parent>body8</parent>
+        <pose>0 0 -0.05 0 0 0</pose>
+        <parent>body7</parent>
+        <child>body8</child>
         <axis>
           <xyz>0 0 1</xyz>
 			<limit>
@@ -676,9 +676,9 @@
     </joint>
 
 	<joint type="revolute" name="joint9">
-        <pose>0 0 0.05 0 0 0</pose>
-        <child>body8</child>
-        <parent>body9</parent>
+        <pose>0 0 -0.05 0 0 0</pose>
+        <parent>body8</parent>
+        <child>body9</child>
         <axis>
           <xyz>0 1 0</xyz>
 			<limit>
@@ -691,9 +691,9 @@
     </joint>
 
 	<joint type="revolute" name="joint10">
-        <pose>0 0 0.05 0 0 0</pose>
-        <child>body9</child>
-        <parent>body10</parent>
+        <pose>0 0 -0.05 0 0 0</pose>
+        <parent>body9</parent>
+        <child>body10</child>
         <axis>
           <xyz>0 1 0</xyz>
 			<limit>
@@ -706,9 +706,9 @@
     </joint>
 
 	<joint type="revolute" name="joint11">
-        <pose>0 0 0.05 0 0 0</pose>
-        <child>body10</child>
-        <parent>tail</parent>
+        <pose>0 0 -0.05 0 0 0</pose>
+        <parent>body10</parent>
+        <child>tail</child>
         <axis>
         	<xyz>0 1 0</xyz>
 			<limit>
