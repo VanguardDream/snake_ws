@@ -4,16 +4,17 @@
 	<model name="kiro_robot">
 
 	<!--It is easy in first make model static.-->
-	<static>true</static>
+	<static>false</static>
 
 	<link name='head'>
 		<pose>0 0 .035 0 -1.57 0</pose>
 
 		<collision name='head_collision'>
+			<pose> 0 0 -0.025 0 0 0 </pose>
 			<geometry>
 				<cylinder>
 					<radius>.035</radius>
-					<length>.13</length>
+					<length>.08</length>
 				</cylinder>
 			</geometry>
 		</collision>
@@ -37,10 +38,10 @@
 		</visual>
 
 		<collision name='head_pad_collision'>
-			<pose> -0.025 0 0 0 0 0</pose>
+			<pose> -0.025 0 -0.025 0 0 0</pose>
 			<geometry>
 				<box>
-					<size>0.02 0.035 0.13</size>
+					<size>0.02 0.035 0.08</size>
 				</box>
 			</geometry>
 		</collision>
@@ -50,10 +51,11 @@
 		<pose>-0.1 0 .035 0 -1.57 0</pose>
 
 		<collision name='body1_collision'>
+			<pose> 0 0 -0.025 0 0 0 </pose>
 			<geometry>
 				<cylinder>
 					<radius>.035</radius>
-					<length>.13</length>
+					<length>.08</length>
 				</cylinder>
 			</geometry>
 		</collision>
@@ -85,10 +87,10 @@
 		</visual>
 
 		<collision name='body1_pad_collision'>
-			<pose> -0.06 0 0 0 0 0</pose>
+			<pose> -0.025 0 -0.025 0 0 0</pose>
 			<geometry>
 				<box>
-					<size>0.02 0.035 0.13</size>
+					<size>0.02 0.035 0.08</size>
 				</box>
 			</geometry>
 		</collision>
@@ -98,10 +100,11 @@
 		<pose>-0.2 0 .035 0 -1.57 0</pose>
 
 		<collision name='body2_collision'>
+			<pose> 0 0 -0.025 0 0 0 </pose>
 			<geometry>
 				<cylinder>
 					<radius>.035</radius>
-					<length>.13</length>
+					<length>.08</length>
 				</cylinder>
 			</geometry>
 		</collision>
@@ -125,10 +128,10 @@
 		</visual>
 
 		<collision name='body2_pad_collision'>
-			<pose> -0.06 0 0 0 0 0</pose>
+			<pose> -0.025 0 -0.025 0 0 0</pose>
 			<geometry>
 				<box>
-					<size>0.02 0.035 0.13</size>
+					<size>0.02 0.035 0.08</size>
 				</box>
 			</geometry>
 		</collision>
@@ -138,10 +141,11 @@
 		<pose>-0.3 0 .035 0 -1.57 0</pose>
 
 		<collision name='body3_collision'>
+			<pose> 0 0 -0.025 0 0 0 </pose>
 			<geometry>
 				<cylinder>
 					<radius>.035</radius>
-					<length>.13</length>
+					<length>.08</length>
 				</cylinder>
 			</geometry>
 		</collision>
@@ -173,10 +177,10 @@
 		</visual>
 
 		<collision name='body3_pad_collision'>
-			<pose> -0.06 0 0 0 0 0</pose>
+			<pose> -0.025 0 -0.025 0 0 0</pose>
 			<geometry>
 				<box>
-					<size>0.02 0.035 0.13</size>
+					<size>0.02 0.035 0.08</size>
 				</box>
 			</geometry>
 		</collision>
@@ -186,10 +190,11 @@
 		<pose>-0.4 0 .035 0 -1.57 0</pose>
 
 		<collision name='body4_collision'>
+			<pose> 0 0 -0.025 0 0 0 </pose>
 			<geometry>
 				<cylinder>
 					<radius>.035</radius>
-					<length>.13</length>
+					<length>.08</length>
 				</cylinder>
 			</geometry>
 		</collision>
@@ -213,10 +218,10 @@
 		</visual>
 
 		<collision name='body4_pad_collision'>
-			<pose> -0.06 0 0 0 0 0</pose>
+			<pose> -0.025 0 -0.025 0 0 0</pose>
 			<geometry>
 				<box>
-					<size>0.02 0.035 0.13</size>
+					<size>0.02 0.035 0.08</size>
 				</box>
 			</geometry>
 		</collision>
@@ -226,10 +231,11 @@
 		<pose>-0.5 0 .035 0 -1.57 0</pose>
 
 		<collision name='body5_collision'>
+			<pose> 0 0 -0.025 0 0 0 </pose>
 			<geometry>
 				<cylinder>
 					<radius>.035</radius>
-					<length>.13</length>
+					<length>.08</length>
 				</cylinder>
 			</geometry>
 		</collision>
@@ -261,10 +267,10 @@
 		</visual>
 
 		<collision name='body5_pad_collision'>
-			<pose> -0.06 0 0 0 0 0</pose>
+			<pose> -0.025 0 -0.025 0 0 0</pose>
 			<geometry>
 				<box>
-					<size>0.02 0.035 0.13</size>
+					<size>0.02 0.035 0.08</size>
 				</box>
 			</geometry>
 		</collision>
@@ -274,10 +280,11 @@
 		<pose>-0.6 0 .035 0 -1.57 0</pose>
 
 		<collision name='body6_collision'>
+			<pose> 0 0 -0.025 0 0 0 </pose>
 			<geometry>
 				<cylinder>
 					<radius>.035</radius>
-					<length>.13</length>
+					<length>.08</length>
 				</cylinder>
 			</geometry>
 		</collision>
@@ -301,10 +308,10 @@
 		</visual>
 
 		<collision name='body6_pad_collision'>
-			<pose> -0.06 0 0 0 0 0</pose>
+			<pose> -0.025 0 -0.025 0 0 0</pose>
 			<geometry>
 				<box>
-					<size>0.02 0.035 0.13</size>
+					<size>0.02 0.035 0.08</size>
 				</box>
 			</geometry>
 		</collision>
@@ -314,10 +321,11 @@
 		<pose>-0.7 0 .035 0 -1.57 0</pose>
 
 		<collision name='body7_collision'>
+			<pose> 0 0 -0.025 0 0 0 </pose>
 			<geometry>
 				<cylinder>
 					<radius>.035</radius>
-					<length>.13</length>
+					<length>.08</length>
 				</cylinder>
 			</geometry>
 		</collision>
@@ -349,10 +357,10 @@
 		</visual>
 
 		<collision name='body7_pad_collision'>
-			<pose> -0.06 0 0 0 0 0</pose>
+			<pose> -0.025 0 -0.025 0 0 0</pose>
 			<geometry>
 				<box>
-					<size>0.02 0.035 0.13</size>
+					<size>0.02 0.035 0.08</size>
 				</box>
 			</geometry>
 		</collision>
@@ -362,10 +370,11 @@
 		<pose>-0.8 0 .035 0 -1.57 0</pose>
 
 		<collision name='body8_collision'>
+			<pose> 0 0 -0.025 0 0 0 </pose>
 			<geometry>
 				<cylinder>
 					<radius>.035</radius>
-					<length>.13</length>
+					<length>.08</length>
 				</cylinder>
 			</geometry>
 		</collision>
@@ -389,10 +398,10 @@
 		</visual>
 
 		<collision name='body8_pad_collision'>
-			<pose> -0.06 0 0 0 0 0</pose>
+			<pose> -0.025 0 -0.025 0 0 0</pose>
 			<geometry>
 				<box>
-					<size>0.02 0.035 0.13</size>
+					<size>0.02 0.035 0.08</size>
 				</box>
 			</geometry>
 		</collision>
@@ -402,10 +411,11 @@
 		<pose>-0.9 0 .035 0 -1.57 0</pose>
 
 		<collision name='body9_collision'>
+			<pose> 0 0 -0.025 0 0 0 </pose>
 			<geometry>
 				<cylinder>
 					<radius>.035</radius>
-					<length>.13</length>
+					<length>.08</length>
 				</cylinder>
 			</geometry>
 		</collision>
@@ -437,10 +447,10 @@
 		</visual>
 
 		<collision name='body9_pad_collision'>
-			<pose> -0.06 0 0 0 0 0</pose>
+			<pose> -0.025 0 -0.025 0 0 0</pose>
 			<geometry>
 				<box>
-					<size>0.02 0.035 0.13</size>
+					<size>0.02 0.035 0.08</size>
 				</box>
 			</geometry>
 		</collision>
@@ -450,10 +460,11 @@
 		<pose>-1.0 0 .035 0 -1.57 0</pose>
 
 		<collision name='body10_collision'>
+			<pose> 0 0 -0.025 0 0 0 </pose>
 			<geometry>
 				<cylinder>
 					<radius>.035</radius>
-					<length>.13</length>
+					<length>.08</length>
 				</cylinder>
 			</geometry>
 		</collision>
@@ -477,10 +488,10 @@
 		</visual>
 
 		<collision name='body10_pad_collision'>
-			<pose> -0.06 0 0 0 0 0</pose>
+			<pose> -0.025 0 -0.025 0 0 0</pose>
 			<geometry>
 				<box>
-					<size>0.02 0.035 0.13</size>
+					<size>0.02 0.035 0.08</size>
 				</box>
 			</geometry>
 		</collision>
@@ -490,6 +501,7 @@
 		<pose>-1.1 0 .035 0 -1.57 0</pose>
 
 		<collision name='tail_collision'>
+			<pose> 0 0 0 0 0 0 </pose>
 			<geometry>
 				<cylinder>
 					<radius>.035</radius>
@@ -525,7 +537,7 @@
 		</visual>
 
 		<collision name='tail_pad_collision'>
-			<pose> -0.06 0 0 0 0 0</pose>
+			<pose> -0.025 0 0 0 0 0</pose>
 			<geometry>
 				<box>
 					<size>0.02 0.035 0.13</size>
@@ -549,8 +561,168 @@
         <parent>body1</parent>
         <axis>
           <xyz>0 1 0</xyz>
+			<limit>
+				<lower> -1.22173 </lower>
+				<upper> 1.22173 </upper>
+				<!-- <effort> 7.8 </effort> -->
+				<velocity> 8.16814 </velocity>
+			</limit>
         </axis>
     </joint>
+
+	<joint type="revolute" name="joint2">
+        <pose>0 0 0.05 0 0 0</pose>
+        <child>body1</child>
+        <parent>body2</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+			<limit>
+				<lower> -1.22173 </lower>
+				<upper> 1.22173 </upper>
+				<!-- <effort> 7.8 </effort> -->
+				<velocity> 8.16814 </velocity>
+			</limit>
+        </axis>
+    </joint>
+
+	<joint type="revolute" name="joint3">
+        <pose>0 0 0.05 0 0 0</pose>
+        <child>body2</child>
+        <parent>body3</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+			<limit>
+				<lower> -1.22173 </lower>
+				<upper> 1.22173 </upper>
+				<!-- <effort> 7.8 </effort> -->
+				<velocity> 8.16814 </velocity>
+			</limit>
+        </axis>
+    </joint>
+
+	<joint type="revolute" name="joint4">
+        <pose>0 0 0.05 0 0 0</pose>
+        <child>body3</child>
+        <parent>body4</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+			<limit>
+				<lower> -1.22173 </lower>
+				<upper> 1.22173 </upper>
+				<!-- <effort> 7.8 </effort> -->
+				<velocity> 8.16814 </velocity>
+			</limit>
+        </axis>
+    </joint>
+
+	<joint type="revolute" name="joint5">
+        <pose>0 0 0.05 0 0 0</pose>
+        <child>body4</child>
+        <parent>body5</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+			<limit>
+				<lower> -1.22173 </lower>
+				<upper> 1.22173 </upper>
+				<!-- <effort> 7.8 </effort> -->
+				<velocity> 8.16814 </velocity>
+			</limit>
+        </axis>
+    </joint>
+
+	<joint type="revolute" name="joint6">
+        <pose>0 0 0.05 0 0 0</pose>
+        <child>body5</child>
+        <parent>body6</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+			<limit>
+				<lower> -1.22173 </lower>
+				<upper> 1.22173 </upper>
+				<!-- <effort> 7.8 </effort> -->
+				<velocity> 8.16814 </velocity>
+			</limit>
+        </axis>
+    </joint>
+
+	<joint type="revolute" name="joint7">
+        <pose>0 0 0.05 0 0 0</pose>
+        <child>body6</child>
+        <parent>body7</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+			<limit>
+				<lower> -1.22173 </lower>
+				<upper> 1.22173 </upper>
+				<!-- <effort> 7.8 </effort> -->
+				<velocity> 8.16814 </velocity>
+			</limit>
+        </axis>
+    </joint>
+
+	<joint type="revolute" name="joint8">
+        <pose>0 0 0.05 0 0 0</pose>
+        <child>body7</child>
+        <parent>body8</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+			<limit>
+				<lower> -1.22173 </lower>
+				<upper> 1.22173 </upper>
+				<!-- <effort> 7.8 </effort> -->
+				<velocity> 8.16814 </velocity>
+			</limit>
+        </axis>
+    </joint>
+
+	<joint type="revolute" name="joint9">
+        <pose>0 0 0.05 0 0 0</pose>
+        <child>body8</child>
+        <parent>body9</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+			<limit>
+				<lower> -1.22173 </lower>
+				<upper> 1.22173 </upper>
+				<!-- <effort> 7.8 </effort> -->
+				<velocity> 8.16814 </velocity>
+			</limit>
+        </axis>
+    </joint>
+
+	<joint type="revolute" name="joint10">
+        <pose>0 0 0.05 0 0 0</pose>
+        <child>body9</child>
+        <parent>body10</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+			<limit>
+				<lower> -1.22173 </lower>
+				<upper> 1.22173 </upper>
+				<!-- <effort> 7.8 </effort> -->
+				<velocity> 8.16814 </velocity>
+			</limit>
+        </axis>
+    </joint>
+
+	<joint type="revolute" name="joint11">
+        <pose>0 0 0.05 0 0 0</pose>
+        <child>body10</child>
+        <parent>tail</parent>
+        <axis>
+        	<xyz>0 1 0</xyz>
+			<limit>
+				<lower> -1.22173 </lower>
+				<upper> 1.22173 </upper>
+				<!-- <effort> 7.8 </effort> -->
+				<velocity> 8.16814 </velocity>
+			</limit>
+        </axis>
+    </joint>
+
+	<gazebo>
+		<self_collide> 1 </self_collide>
+	</gazebo>
 
 	<!--Hardlink created here-->
 	</model>
