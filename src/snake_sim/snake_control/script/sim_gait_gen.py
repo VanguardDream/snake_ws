@@ -59,7 +59,7 @@ phase_hor = (3.1415 / 180) * 30
 amp_ver = (3.1415 / 180) * 45
 amp_hor = (3.1415 / 180) * 60
 
-gait_type = 'vertical'
+gait_type = 'sinuous'
 
 gazebo_pause = True
 
@@ -275,7 +275,7 @@ def clearSimulation():
 
     csv_line_writer = csv.writer(csv_file)
 
-    csv_line_writer.writerow([str(time.strftime('%c', time.localtime(time.time()))), "end", gait_type, os_delay_sec.to_sec(), amp_ver / (3.1415 /180), phase_ver / (3.1415 /180), final_x, final_y, final_z])
+    csv_line_writer.writerow([str(time.strftime('%c', time.localtime(time.time()))), "end", gait_type, os_delay_sec.to_sec(), amp_ver / (3.1415 /180), phase_ver / (3.1415 /180), amp_hor / (3.1415 /180), phase_hor / (3.1415 /180), final_x, final_y, final_z])
 
     csv_file.close()
     
@@ -343,7 +343,7 @@ if __name__ == '__main__':
     rate = rospy.Rate(20)
     pauseSimulation()
 
-    gazeboPhysicsSet(max_update_rate_value=1000)
+    gazeboPhysicsSet(max_update_rate_value=3000)
 
     t_prior = rospy.Time.now()
 
