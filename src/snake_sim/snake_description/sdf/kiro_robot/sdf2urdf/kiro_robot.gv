@@ -1,0 +1,38 @@
+digraph G {
+node [shape=box];
+"kiro_robot__head" [label="kiro_robot__head"];
+"kiro_robot__body1" [label="kiro_robot__body1"];
+"kiro_robot__body2" [label="kiro_robot__body2"];
+"kiro_robot__body3" [label="kiro_robot__body3"];
+"kiro_robot__body4" [label="kiro_robot__body4"];
+"kiro_robot__body5" [label="kiro_robot__body5"];
+"kiro_robot__body6" [label="kiro_robot__body6"];
+"kiro_robot__body7" [label="kiro_robot__body7"];
+"kiro_robot__body8" [label="kiro_robot__body8"];
+"kiro_robot__body9" [label="kiro_robot__body9"];
+"kiro_robot__body10" [label="kiro_robot__body10"];
+"kiro_robot__tail" [label="kiro_robot__tail"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"kiro_robot__head" -> "kiro_robot__joint1" [label="xyz: -0.05 0 0.03496 \nrpy: 0 -1.5708 0"]
+"kiro_robot__joint1" -> "kiro_robot__body1"
+"kiro_robot__body1" -> "kiro_robot__joint2" [label="xyz: -8e-05 0 0.1 \nrpy: 0 -0 0"]
+"kiro_robot__joint2" -> "kiro_robot__body2"
+"kiro_robot__body2" -> "kiro_robot__joint3" [label="xyz: -8e-05 0 0.1 \nrpy: 0 -0 0"]
+"kiro_robot__joint3" -> "kiro_robot__body3"
+"kiro_robot__body3" -> "kiro_robot__joint4" [label="xyz: -8e-05 0 0.1 \nrpy: 0 -0 0"]
+"kiro_robot__joint4" -> "kiro_robot__body4"
+"kiro_robot__body4" -> "kiro_robot__joint5" [label="xyz: -8e-05 0 0.1 \nrpy: 0 -0 0"]
+"kiro_robot__joint5" -> "kiro_robot__body5"
+"kiro_robot__body5" -> "kiro_robot__joint6" [label="xyz: -8e-05 0 0.1 \nrpy: 0 -0 0"]
+"kiro_robot__joint6" -> "kiro_robot__body6"
+"kiro_robot__body6" -> "kiro_robot__joint7" [label="xyz: -8e-05 0 0.1 \nrpy: 0 -0 0"]
+"kiro_robot__joint7" -> "kiro_robot__body7"
+"kiro_robot__body7" -> "kiro_robot__joint8" [label="xyz: -8e-05 0 0.1 \nrpy: 0 -0 0"]
+"kiro_robot__joint8" -> "kiro_robot__body8"
+"kiro_robot__body8" -> "kiro_robot__joint9" [label="xyz: -8e-05 0 0.1 \nrpy: 0 -0 0"]
+"kiro_robot__joint9" -> "kiro_robot__body9"
+"kiro_robot__body9" -> "kiro_robot__joint10" [label="xyz: -8e-05 0 0.1 \nrpy: 0 -0 0"]
+"kiro_robot__joint10" -> "kiro_robot__body10"
+"kiro_robot__body10" -> "kiro_robot__joint11" [label="xyz: -8e-05 0 0.1 \nrpy: 0 -0 0"]
+"kiro_robot__joint11" -> "kiro_robot__tail"
+}

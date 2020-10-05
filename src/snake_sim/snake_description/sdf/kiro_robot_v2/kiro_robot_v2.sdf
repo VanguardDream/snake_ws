@@ -1,0 +1,71 @@
+<?xml version = '1.0'?>
+
+<!-- Author : Bongsub Song -->
+<!-- Created Date : 2020 OCTOBER -->
+<!-- E-mail : doorebong@gmail.com -->
+
+<sdf version ='1.4'>
+	<model name="kiro_robot">
+
+	<static>false</static>
+
+
+	<!-- Movable Link Description : Cylinder type, radius 58mm length 92mm joint displacement 71mm -->
+	<!-- Pi = 3.14159265359 -->
+	<!-- 1/2 Pi = 1.57079632679 -->
+
+
+	<link name='head'>
+		<pose>0 0 0.029	 0 1.57079632679 0</pose>
+		<inertial>
+			<mass>0.192</mass>
+			<inertia>
+				<ixx>390949e-9</ixx>
+				<ixy>346e-9</ixy>
+				<ixz>-59e-9</ixz>
+				<iyy>73725e-9</iyy>
+				<iyz>355e-9</iyz>
+				<izz>400197e-9</izz>
+			</inertia>
+		</inertial>
+		<collision name='head_collision'>
+			<geometry>
+				<cylinder>
+					<radius>.029</radius>
+					<length>.092</length>
+				</cylinder>
+			</geometry>
+		</collision>
+
+		<visual name='head_visual'>
+			<geometry>
+				<cylinder>
+					<radius>.029</radius>
+					<length>.092</length>
+				</cylinder>
+			</geometry>
+		</visual>
+
+		<collision name='head_pad_collision'>
+			<pose>0.0265 0 0  0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.005 0.020 0.092</size>
+				</box>
+			</geometry>
+		</collision>
+
+		<visual name='head_pad_visual'>
+			<pose>0.0265 0 0  0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.005 0.020 0.092</size>
+				</box>
+			</geometry>
+		</visual>
+
+	</link>
+
+	
+	</model>
+</sdf>
