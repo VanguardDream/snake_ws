@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<robot>
+
+    <!-- ROS - GAZEBO PLUG-IN -->
+    <!-- Author : Bongsub Song -->
+    <!-- Created Date : 2020 OCTOBER -->
+    <!-- E-mail : doorebong@gmail.com -->
+
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/kiro_v2</robotNamespace>
+            <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+        </plugin>
+    </gazebo>
+
+    <!-- ROS -GAZEBO PLUG-IN END -->
+
+</robot>

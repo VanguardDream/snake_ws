@@ -1,0 +1,27 @@
+<launch>
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find kiro_sim)/config/kiro_v2.yaml" command="load"/>
+
+  <!-- load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+	output="screen" ns="/kiro_v2" args="joint_state_controller
+            1_joint_position_controller
+            2_joint_position_controller
+            3_joint_position_controller
+            4_joint_position_controller
+            5_joint_position_controller
+            6_joint_position_controller
+            7_joint_position_controller
+            8_joint_position_controller
+            9_joint_position_controller
+            10_joint_position_controller
+            11_joint_position_controller"/>
+
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+	respawn="false" output="screen">
+    <remap from="/joint_states" to="/kiro_v2/joint_states" />
+  </node>
+
+</launch>

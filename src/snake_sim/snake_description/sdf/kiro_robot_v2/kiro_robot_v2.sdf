@@ -5,7 +5,7 @@
 <!-- E-mail : doorebong@gmail.com -->
 
 <sdf version ='1.4'>
-	<model name="kiro_robot">
+	<model name="kiro_robot_v2">
 
 	<static>false</static>
 
@@ -15,20 +15,21 @@
 	<!-- 1/2 Pi = 1.57079632679 -->
 
 
-	<link name='head'>
+	<link name='1_head'>
 		<pose>0 0 0.029	 0 1.57079632679 0</pose>
+		<must_be_base_link>true</must_be_base_link>
 		<inertial>
 			<mass>0.192</mass>
 			<inertia>
 				<ixx>390949e-9</ixx>
-				<ixy>346e-9</ixy>
-				<ixz>-59e-9</ixz>
-				<iyy>73725e-9</iyy>
+				<ixy>-59e-9</ixy>
+				<ixz>346e-9</ixz>
+				<iyy>400197e-9</iyy>
 				<iyz>355e-9</iyz>
-				<izz>400197e-9</izz>
+				<izz>73725e-9</izz>
 			</inertia>
 		</inertial>
-		<collision name='head_collision'>
+		<collision name='1_head_collision'>
 			<geometry>
 				<cylinder>
 					<radius>.029</radius>
@@ -37,7 +38,7 @@
 			</geometry>
 		</collision>
 
-		<visual name='head_visual'>
+		<visual name='1_head_visual'>
 			<geometry>
 				<cylinder>
 					<radius>.029</radius>
@@ -46,7 +47,7 @@
 			</geometry>
 		</visual>
 
-		<collision name='head_pad_collision'>
+		<collision name='1_head_pad_collision'>
 			<pose>0.0265 0 0  0 0 0</pose>
 			<geometry>
 				<box>
@@ -55,7 +56,7 @@
 			</geometry>
 		</collision>
 
-		<visual name='head_pad_visual'>
+		<visual name='1_head_pad_visual'>
 			<pose>0.0265 0 0  0 0 0</pose>
 			<geometry>
 				<box>
@@ -63,9 +64,812 @@
 				</box>
 			</geometry>
 		</visual>
-
 	</link>
 
-	
+	<link name='2_link'>
+		<pose>-0.071 0 0.029	 0 1.57079632679 0</pose>
+		<inertial>
+			<mass>0.192</mass>
+			<inertia>
+				<ixx>390949e-9</ixx>
+				<ixy>-59e-9</ixy>
+				<ixz>346e-9</ixz>
+				<iyy>400197e-9</iyy>
+				<iyz>355e-9</iyz>
+				<izz>73725e-9</izz>
+			</inertia>
+		</inertial>
+		<collision name='2_link_collision'>
+			<pose>0 0 -0.0105  0 0 0</pose>
+			<geometry>
+				<cylinder>
+					<radius>.029</radius>
+					<length>.071</length>
+				</cylinder>
+			</geometry>
+		</collision>
+
+		<visual name='2_link_visual'>
+			<geometry>
+				<cylinder>
+					<radius>.029</radius>
+					<length>.092</length>
+				</cylinder>
+			</geometry>
+		</visual>
+
+		<collision name='2_link_pad_collision'>
+			<pose>0.0265 0 -0.0105  0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.005 0.020 0.071</size>
+				</box>
+			</geometry>
+		</collision>
+
+		<visual name='2_link_pad_visual'>
+			<pose>0.0265 0 0  0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.005 0.020 0.092</size>
+				</box>
+			</geometry>
+		</visual>
+	</link>
+
+	<link name='3_link'>
+		<pose>-0.142 0 0.029	 0 1.57079632679 0</pose>
+		<inertial>
+			<mass>0.192</mass>
+			<inertia>
+				<ixx>390949e-9</ixx>
+				<ixy>-59e-9</ixy>
+				<ixz>346e-9</ixz>
+				<iyy>400197e-9</iyy>
+				<iyz>355e-9</iyz>
+				<izz>73725e-9</izz>
+			</inertia>
+		</inertial>
+		<collision name='3_link_collision'>
+			<pose>0 0 -0.0105  0 0 0</pose>
+			<geometry>
+				<cylinder>
+					<radius>.029</radius>
+					<length>.071</length>
+				</cylinder>
+			</geometry>
+		</collision>
+
+		<visual name='3_link_visual'>
+			<geometry>
+				<cylinder>
+					<radius>.029</radius>
+					<length>.092</length>
+				</cylinder>
+			</geometry>
+		</visual>
+
+		<collision name='3_link_pad_collision'>
+			<pose>0.0265 0 -0.0105  0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.005 0.020 0.071</size>
+				</box>
+			</geometry>
+		</collision>
+
+		<visual name='3_link_pad_visual'>
+			<pose>0.0265 0 0  0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.005 0.020 0.092</size>
+				</box>
+			</geometry>
+		</visual>
+	</link>
+
+	<link name='4_link'>
+		<pose>-0.213 0 0.029	 0 1.57079632679 0</pose>
+		<inertial>
+			<mass>0.192</mass>
+			<inertia>
+				<ixx>390949e-9</ixx>
+				<ixy>-59e-9</ixy>
+				<ixz>346e-9</ixz>
+				<iyy>400197e-9</iyy>
+				<iyz>355e-9</iyz>
+				<izz>73725e-9</izz>
+			</inertia>
+		</inertial>
+		<collision name='4_link_collision'>
+			<pose>0 0 -0.0105  0 0 0</pose>
+			<geometry>
+				<cylinder>
+					<radius>.029</radius>
+					<length>.071</length>
+				</cylinder>
+			</geometry>
+		</collision>
+
+		<visual name='4_link_visual'>
+			<geometry>
+				<cylinder>
+					<radius>.029</radius>
+					<length>.092</length>
+				</cylinder>
+			</geometry>
+		</visual>
+
+		<collision name='4_link_pad_collision'>
+			<pose>0.0265 0 -0.0105  0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.005 0.020 0.071</size>
+				</box>
+			</geometry>
+		</collision>
+
+		<visual name='4_link_pad_visual'>
+			<pose>0.0265 0 0  0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.005 0.020 0.092</size>
+				</box>
+			</geometry>
+		</visual>
+	</link>
+
+	<link name='5_link'>
+		<pose>-0.284 0 0.029	 0 1.57079632679 0</pose>
+		<inertial>
+			<mass>0.192</mass>
+			<inertia>
+				<ixx>390949e-9</ixx>
+				<ixy>-59e-9</ixy>
+				<ixz>346e-9</ixz>
+				<iyy>400197e-9</iyy>
+				<iyz>355e-9</iyz>
+				<izz>73725e-9</izz>
+			</inertia>
+		</inertial>
+		<collision name='5_link_collision'>
+			<pose>0 0 -0.0105  0 0 0</pose>
+			<geometry>
+				<cylinder>
+					<radius>.029</radius>
+					<length>.071</length>
+				</cylinder>
+			</geometry>
+		</collision>
+
+		<visual name='5_link_visual'>
+			<geometry>
+				<cylinder>
+					<radius>.029</radius>
+					<length>.092</length>
+				</cylinder>
+			</geometry>
+		</visual>
+
+		<collision name='5_link_pad_collision'>
+			<pose>0.0265 0 -0.0105  0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.005 0.020 0.071</size>
+				</box>
+			</geometry>
+		</collision>
+
+		<visual name='5_link_pad_visual'>
+			<pose>0.0265 0 0  0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.005 0.020 0.092</size>
+				</box>
+			</geometry>
+		</visual>
+	</link>
+
+	<link name='6_link'>
+		<pose>-0.355 0 0.029	 0 1.57079632679 0</pose>
+		<inertial>
+			<mass>0.192</mass>
+			<inertia>
+				<ixx>390949e-9</ixx>
+				<ixy>-59e-9</ixy>
+				<ixz>346e-9</ixz>
+				<iyy>400197e-9</iyy>
+				<iyz>355e-9</iyz>
+				<izz>73725e-9</izz>
+			</inertia>
+		</inertial>
+		<collision name='6_link_collision'>
+			<pose>0 0 -0.0105  0 0 0</pose>
+			<geometry>
+				<cylinder>
+					<radius>.029</radius>
+					<length>.071</length>
+				</cylinder>
+			</geometry>
+		</collision>
+
+		<visual name='6_link_visual'>
+			<geometry>
+				<cylinder>
+					<radius>.029</radius>
+					<length>.092</length>
+				</cylinder>
+			</geometry>
+		</visual>
+
+		<collision name='6_link_pad_collision'>
+			<pose>0.0265 0 -0.0105  0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.005 0.020 0.071</size>
+				</box>
+			</geometry>
+		</collision>
+
+		<visual name='6_link_pad_visual'>
+			<pose>0.0265 0 0  0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.005 0.020 0.092</size>
+				</box>
+			</geometry>
+		</visual>
+	</link>
+
+	<link name='7_link'>
+		<pose>-0.426 0 0.029	 0 1.57079632679 0</pose>
+		<inertial>
+			<mass>0.192</mass>
+			<inertia>
+				<ixx>390949e-9</ixx>
+				<ixy>-59e-9</ixy>
+				<ixz>346e-9</ixz>
+				<iyy>400197e-9</iyy>
+				<iyz>355e-9</iyz>
+				<izz>73725e-9</izz>
+			</inertia>
+		</inertial>
+		<collision name='7_link_collision'>
+			<pose>0 0 -0.0105  0 0 0</pose>
+			<geometry>
+				<cylinder>
+					<radius>.029</radius>
+					<length>.071</length>
+				</cylinder>
+			</geometry>
+		</collision>
+
+		<visual name='7_link_visual'>
+			<geometry>
+				<cylinder>
+					<radius>.029</radius>
+					<length>.092</length>
+				</cylinder>
+			</geometry>
+		</visual>
+
+		<collision name='7_link_pad_collision'>
+			<pose>0.0265 0 -0.0105  0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.005 0.020 0.071</size>
+				</box>
+			</geometry>
+		</collision>
+
+		<visual name='7_link_pad_visual'>
+			<pose>0.0265 0 0  0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.005 0.020 0.092</size>
+				</box>
+			</geometry>
+		</visual>
+	</link>
+
+	<link name='8_link'>
+		<pose>-0.497 0 0.029	 0 1.57079632679 0</pose>
+		<inertial>
+			<mass>0.192</mass>
+			<inertia>
+				<ixx>390949e-9</ixx>
+				<ixy>-59e-9</ixy>
+				<ixz>346e-9</ixz>
+				<iyy>400197e-9</iyy>
+				<iyz>355e-9</iyz>
+				<izz>73725e-9</izz>
+			</inertia>
+		</inertial>
+		<collision name='8_link_collision'>
+			<pose>0 0 -0.0105  0 0 0</pose>
+			<geometry>
+				<cylinder>
+					<radius>.029</radius>
+					<length>.071</length>
+				</cylinder>
+			</geometry>
+		</collision>
+
+		<visual name='8_link_visual'>
+			<geometry>
+				<cylinder>
+					<radius>.029</radius>
+					<length>.092</length>
+				</cylinder>
+			</geometry>
+		</visual>
+
+		<collision name='8_link_pad_collision'>
+			<pose>0.0265 0 -0.0105  0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.005 0.020 0.071</size>
+				</box>
+			</geometry>
+		</collision>
+
+		<visual name='8_link_pad_visual'>
+			<pose>0.0265 0 0  0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.005 0.020 0.092</size>
+				</box>
+			</geometry>
+		</visual>
+	</link>
+
+	<link name='9_link'>
+		<pose>-0.568 0 0.029	 0 1.57079632679 0</pose>
+		<inertial>
+			<mass>0.192</mass>
+			<inertia>
+				<ixx>390949e-9</ixx>
+				<ixy>-59e-9</ixy>
+				<ixz>346e-9</ixz>
+				<iyy>400197e-9</iyy>
+				<iyz>355e-9</iyz>
+				<izz>73725e-9</izz>
+			</inertia>
+		</inertial>
+		<collision name='9_link_collision'>
+			<pose>0 0 -0.0105  0 0 0</pose>
+			<geometry>
+				<cylinder>
+					<radius>.029</radius>
+					<length>.071</length>
+				</cylinder>
+			</geometry>
+		</collision>
+
+		<visual name='9_link_visual'>
+			<geometry>
+				<cylinder>
+					<radius>.029</radius>
+					<length>.092</length>
+				</cylinder>
+			</geometry>
+		</visual>
+
+		<collision name='9_link_pad_collision'>
+			<pose>0.0265 0 -0.0105  0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.005 0.020 0.071</size>
+				</box>
+			</geometry>
+		</collision>
+
+		<visual name='9_link_pad_visual'>
+			<pose>0.0265 0 0  0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.005 0.020 0.092</size>
+				</box>
+			</geometry>
+		</visual>
+	</link>
+
+	<link name='10_link'>
+		<pose>-0.639 0 0.029	 0 1.57079632679 0</pose>
+		<inertial>
+			<mass>0.192</mass>
+			<inertia>
+				<ixx>390949e-9</ixx>
+				<ixy>-59e-9</ixy>
+				<ixz>346e-9</ixz>
+				<iyy>400197e-9</iyy>
+				<iyz>355e-9</iyz>
+				<izz>73725e-9</izz>
+			</inertia>
+		</inertial>
+		<collision name='10_link_collision'>
+			<pose>0 0 -0.0105  0 0 0</pose>
+			<geometry>
+				<cylinder>
+					<radius>.029</radius>
+					<length>.071</length>
+				</cylinder>
+			</geometry>
+		</collision>
+
+		<visual name='10_link_visual'>
+			<geometry>
+				<cylinder>
+					<radius>.029</radius>
+					<length>.092</length>
+				</cylinder>
+			</geometry>
+		</visual>
+
+		<collision name='10_link_pad_collision'>
+			<pose>0.0265 0 -0.0105  0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.005 0.020 0.071</size>
+				</box>
+			</geometry>
+		</collision>
+
+		<visual name='10_link_pad_visual'>
+			<pose>0.0265 0 0  0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.005 0.020 0.092</size>
+				</box>
+			</geometry>
+		</visual>
+	</link>
+
+	<link name='11_link'>
+		<pose>-0.710 0 0.029	 0 1.57079632679 0</pose>
+		<inertial>
+			<mass>0.192</mass>
+			<inertia>
+				<ixx>390949e-9</ixx>
+				<ixy>-59e-9</ixy>
+				<ixz>346e-9</ixz>
+				<iyy>400197e-9</iyy>
+				<iyz>355e-9</iyz>
+				<izz>73725e-9</izz>
+			</inertia>
+		</inertial>
+		<collision name='11_link_collision'>
+			<pose>0 0 -0.0105  0 0 0</pose>
+			<geometry>
+				<cylinder>
+					<radius>.029</radius>
+					<length>.071</length>
+				</cylinder>
+			</geometry>
+		</collision>
+
+		<visual name='11_link_visual'>
+			<geometry>
+				<cylinder>
+					<radius>.029</radius>
+					<length>.092</length>
+				</cylinder>
+			</geometry>
+		</visual>
+
+		<collision name='11_link_pad_collision'>
+			<pose>0.0265 0 -0.0105  0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.005 0.020 0.071</size>
+				</box>
+			</geometry>
+		</collision>
+
+		<visual name='11_link_pad_visual'>
+			<pose>0.0265 0 0  0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.005 0.020 0.092</size>
+				</box>
+			</geometry>
+		</visual>
+	</link>
+
+	<link name='12_tail'>
+		<pose>-0.781 0 0.029	 0 1.57079632679 0</pose>
+		<inertial>
+			<mass>0.192</mass>
+			<inertia>
+				<ixx>390949e-9</ixx>
+				<ixy>-59e-9</ixy>
+				<ixz>346e-9</ixz>
+				<iyy>400197e-9</iyy>
+				<iyz>355e-9</iyz>
+				<izz>73725e-9</izz>
+			</inertia>
+		</inertial>
+		<collision name='12_tail_collision'>
+			<pose>0 0 -0.0105  0 0 0</pose>
+			<geometry>
+				<cylinder>
+					<radius>.029</radius>
+					<length>.071</length>
+				</cylinder>
+			</geometry>
+		</collision>
+
+		<visual name='12_tail_visual'>
+			<geometry>
+				<cylinder>
+					<radius>.029</radius>
+					<length>.092</length>
+				</cylinder>
+			</geometry>
+		</visual>
+
+		<collision name='12_tail_pad_collision'>
+			<pose>0.0265 0 -0.0105  0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.005 0.020 0.071</size>
+				</box>
+			</geometry>
+		</collision>
+
+		<visual name='12_tail_pad_visual'>
+			<pose>0.0265 0 0  0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.005 0.020 0.092</size>
+				</box>
+			</geometry>
+		</visual>
+	</link>
+
+<!-- Joint are described here -->
+
+	<joint name="1_joint" type="revolute">
+      <parent>1_head</parent>
+      <child>2_link</child>
+      <pose>0 0 0.0355  0 0 0</pose>
+      <axis>
+        <xyz>0 1 0</xyz>
+		<dynamics>
+			<damping>0</damping>
+			<!-- Viscous damping coefficient -->
+			<friction>0.30</friction>
+		</dynamics>
+		<limit>
+			<lower>-1.57079632679</lower>
+			<upper>1.57079632679</upper>
+			<effort>1.70775</effort> 
+			<!-- effort unit : N*m / Value from KIRO, korea -->
+			<velocity>4.2</velocity>
+			<!-- velocity unit : rad/s / Value from KIRO, korea -->
+		</limit>
+      </axis>
+    </joint>
+
+	<joint name="2_joint" type="revolute">
+      <parent>2_link</parent>
+      <child>3_link</child>
+      <pose>0 0 0.0355  0 0 0</pose>
+      <axis>
+        <xyz>0 0 1</xyz>
+		<dynamics>
+			<damping>0</damping>
+			<!-- Viscous damping coefficient -->
+			<friction>0.30</friction>
+		</dynamics>
+		<limit>
+			<lower>-1.57079632679</lower>
+			<upper>1.57079632679</upper>
+			<effort>1.70775</effort> 
+			<!-- effort unit : N*m / Value from KIRO, korea -->
+			<velocity>4.2</velocity>
+			<!-- velocity unit : rad/s / Value from KIRO, korea -->
+		</limit>
+      </axis>
+    </joint>
+
+	<joint name="3_joint" type="revolute">
+      <parent>3_link</parent>
+      <child>4_link</child>
+      <pose>0 0 0.0355  0 0 0</pose>
+      <axis>
+        <xyz>0 1 0</xyz>
+		<dynamics>
+			<damping>0</damping>
+			<!-- Viscous damping coefficient -->
+			<friction>0.30</friction>
+		</dynamics>
+		<limit>
+			<lower>-1.57079632679</lower>
+			<upper>1.57079632679</upper>
+			<effort>1.70775</effort> 
+			<!-- effort unit : N*m / Value from KIRO, korea -->
+			<velocity>4.2</velocity>
+			<!-- velocity unit : rad/s / Value from KIRO, korea -->
+		</limit>
+      </axis>
+    </joint>
+
+	<joint name="4_joint" type="revolute">
+      <parent>4_link</parent>
+      <child>5_link</child>
+      <pose>0 0 0.0355  0 0 0</pose>
+      <axis>
+        <xyz>0 0 1</xyz>
+		<dynamics>
+			<damping>0</damping>
+			<!-- Viscous damping coefficient -->
+			<friction>0.30</friction>
+		</dynamics>
+		<limit>
+			<lower>-1.57079632679</lower>
+			<upper>1.57079632679</upper>
+			<effort>1.70775</effort> 
+			<!-- effort unit : N*m / Value from KIRO, korea -->
+			<velocity>4.2</velocity>
+			<!-- velocity unit : rad/s / Value from KIRO, korea -->
+		</limit>
+      </axis>
+    </joint>
+
+	<joint name="5_joint" type="revolute">
+      <parent>5_link</parent>
+      <child>6_link</child>
+      <pose>0 0 0.0355  0 0 0</pose>
+      <axis>
+        <xyz>0 1 0</xyz>
+		<dynamics>
+			<damping>0</damping>
+			<!-- Viscous damping coefficient -->
+			<friction>0.30</friction>
+		</dynamics>
+		<limit>
+			<lower>-1.57079632679</lower>
+			<upper>1.57079632679</upper>
+			<effort>1.70775</effort> 
+			<!-- effort unit : N*m / Value from KIRO, korea -->
+			<velocity>4.2</velocity>
+			<!-- velocity unit : rad/s / Value from KIRO, korea -->
+		</limit>
+      </axis>
+    </joint>
+
+	<joint name="6_joint" type="revolute">
+      <parent>6_link</parent>
+      <child>7_link</child>
+      <pose>0 0 0.0355  0 0 0</pose>
+      <axis>
+        <xyz>0 0 1</xyz>
+		<dynamics>
+			<damping>0</damping>
+			<!-- Viscous damping coefficient -->
+			<friction>0.30</friction>
+		</dynamics>
+		<limit>
+			<lower>-1.57079632679</lower>
+			<upper>1.57079632679</upper>
+			<effort>1.70775</effort> 
+			<!-- effort unit : N*m / Value from KIRO, korea -->
+			<velocity>4.2</velocity>
+			<!-- velocity unit : rad/s / Value from KIRO, korea -->
+		</limit>
+      </axis>
+    </joint>
+
+	<joint name="7_joint" type="revolute">
+      <parent>7_link</parent>
+      <child>8_link</child>
+      <pose>0 0 0.0355  0 0 0</pose>
+      <axis>
+        <xyz>0 1 0</xyz>
+		<dynamics>
+			<damping>0</damping>
+			<!-- Viscous damping coefficient -->
+			<friction>0.30</friction>
+		</dynamics>
+		<limit>
+			<lower>-1.57079632679</lower>
+			<upper>1.57079632679</upper>
+			<effort>1.70775</effort> 
+			<!-- effort unit : N*m / Value from KIRO, korea -->
+			<velocity>4.2</velocity>
+			<!-- velocity unit : rad/s / Value from KIRO, korea -->
+		</limit>
+      </axis>
+    </joint>
+
+	<joint name="8_joint" type="revolute">
+      <parent>8_link</parent>
+      <child>9_link</child>
+      <pose>0 0 0.0355  0 0 0</pose>
+      <axis>
+        <xyz>0 0 1</xyz>
+		<dynamics>
+			<damping>0</damping>
+			<!-- Viscous damping coefficient -->
+			<friction>0.30</friction>
+		</dynamics>
+		<limit>
+			<lower>-1.57079632679</lower>
+			<upper>1.57079632679</upper>
+			<effort>1.70775</effort> 
+			<!-- effort unit : N*m / Value from KIRO, korea -->
+			<velocity>4.2</velocity>
+			<!-- velocity unit : rad/s / Value from KIRO, korea -->
+		</limit>
+      </axis>
+    </joint>
+
+	<joint name="9_joint" type="revolute">
+      <parent>9_link</parent>
+      <child>10_link</child>
+      <pose>0 0 0.0355  0 0 0</pose>
+      <axis>
+        <xyz>0 1 0</xyz>
+		<dynamics>
+			<damping>0</damping>
+			<!-- Viscous damping coefficient -->
+			<friction>0.30</friction>
+		</dynamics>
+		<limit>
+			<lower>-1.57079632679</lower>
+			<upper>1.57079632679</upper>
+			<effort>1.70775</effort> 
+			<!-- effort unit : N*m / Value from KIRO, korea -->
+			<velocity>4.2</velocity>
+			<!-- velocity unit : rad/s / Value from KIRO, korea -->
+		</limit>
+      </axis>
+    </joint>
+
+	<joint name="10_joint" type="revolute">
+      <parent>10_link</parent>
+      <child>11_link</child>
+      <pose>0 0 0.0355  0 0 0</pose>
+      <axis>
+        <xyz>0 0 1</xyz>
+		<dynamics>
+			<damping>0</damping>
+			<!-- Viscous damping coefficient -->
+			<friction>0.30</friction>
+		</dynamics>
+		<limit>
+			<lower>-1.57079632679</lower>
+			<upper>1.57079632679</upper>
+			<effort>1.70775</effort> 
+			<!-- effort unit : N*m / Value from KIRO, korea -->
+			<velocity>4.2</velocity>
+			<!-- velocity unit : rad/s / Value from KIRO, korea -->
+		</limit>
+      </axis>
+    </joint>
+
+	<joint name="11_joint" type="revolute">
+      <parent>11_link</parent>
+      <child>12_tail</child>
+      <pose>0 0 0.0355  0 0 0</pose>
+      <axis>
+        <xyz>0 1 0</xyz>
+		<dynamics>
+			<damping>0</damping>
+			<!-- Viscous damping coefficient -->
+			<friction>0.30</friction>
+		</dynamics>
+		<limit>
+			<lower>-1.57079632679</lower>
+			<upper>1.57079632679</upper>
+			<effort>1.70775</effort> 
+			<!-- effort unit : N*m / Value from KIRO, korea -->
+			<velocity>4.2</velocity>
+			<!-- velocity unit : rad/s / Value from KIRO, korea -->
+		</limit>
+      </axis>
+    </joint>
+
 	</model>
 </sdf>

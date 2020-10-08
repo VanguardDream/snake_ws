@@ -1,0 +1,8 @@
+<launch>
+    <!-- Load Robot Description -->
+    <include file="$(find kiro_sim)/launch/set_gazebo.launch" />
+
+    <!-- Load Position Controllers -->
+    <include file="$(find kiro_sim)/launch/load_controllers.launch" />
+    
+</launch>

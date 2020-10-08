@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<!-- Xacro -->
+<!-- Author : Bongsub Song -->
+<!-- Created Date : 2020 OCTOBER -->
+<!-- E-mail : doorebong@gmail.com -->
+
+<robot name="kiro_v2" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- Import all Gazebo-customization elements, including Gazebo colors -->
+    <xacro:include filename="$(find kiro_sim)/urdf/kiro_v2.gazebo" />
+
+    <!-- Import robot description, links and joints -->
+    <xacro:include filename="$(find kiro_sim)/urdf/kiro_v2.urdf" />
+
+    <!-- Transmission Macros -->
+    <xacro:macro name="gazebo_trans" params="prefix">
+        <transmission name="${prefix}_joint_trans">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="${prefix}_joint">
+                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="${prefix}_actuator">
+                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+    </xacro:macro>
+
+    <xacro:gazebo_trans prefix="1"/>
+    <xacro:gazebo_trans prefix="2"/>
+    <xacro:gazebo_trans prefix="3"/>
+    <xacro:gazebo_trans prefix="4"/>
+    <xacro:gazebo_trans prefix="5"/>
+    <xacro:gazebo_trans prefix="6"/>
+    <xacro:gazebo_trans prefix="7"/>
+    <xacro:gazebo_trans prefix="8"/>
+    <xacro:gazebo_trans prefix="9"/>
+    <xacro:gazebo_trans prefix="10"/>
+    <xacro:gazebo_trans prefix="11"/>
+<!-- Xacro END -->
+
+</robot>
