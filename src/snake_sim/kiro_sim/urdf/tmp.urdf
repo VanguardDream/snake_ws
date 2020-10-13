@@ -1,512 +1,452 @@
 <?xml version="1.0" ?>
 <robot name="kiro_v2">
-
-  <!-- URDF -->
-  <!-- Author : Bongsub Song -->
-  <!-- Created Date : 2020 OCTOBER -->
-  <!-- E-mail : doorebong@gmail.com -->
-  <!-- <link name="base_footprint"/>
-
-  <joint name="base_joint" type="fixed">
-    <parent link="base_footprint"/>
-    <child link="1_head"/>
-    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-  </joint> -->
-
-  <link name="1_head">
-    <inertial>
-      <mass value="0.192"/>
-      <origin rpy="0  0  0" xyz="0  0  0"/>
-      <inertia ixx="390949e-9" ixy="-59e-9" ixz="346e-9" iyy="400197e-9" iyz="355e-9" izz="73725e-9"/>
-    </inertial>
-    <collision name="1_head_collision">
-      <origin rpy="0       1.57079  0" xyz="0     0     0.029"/>
-      <geometry>
-        <cylinder length=".092" radius=".029"/>
-      </geometry>
-      <surface>
-        <friction>
-          <ode>
-            <mu1> 40.0 </mu1>
-            <mu2> 40.0 </mu2>
-          </ode>
-        </friction>
-      </surface>
-    </collision>
-    <collision name="1_head_pad_collision">
-      <origin rpy="0       1.57079  0" xyz="0      0      0.0025"/>
-      <geometry>
-        <box size="0.005 0.020 0.092"/>
-      </geometry>
-      <surface>
-        <friction>
-          <ode>
-            <mu1> 40.0 </mu1>
-            <mu2> 40.0 </mu2>
-          </ode>
-        </friction>
-      </surface>
-    </collision>
-    <visual name="1_head_visual">
-      <origin rpy="0       1.57079  0" xyz="0     0     0.029"/>
-      <geometry>
-        <cylinder length=".092" radius=".029"/>
-      </geometry>
-      <material name="light_black"/>
-    </visual>
-    <visual name="1_head_pad_visual">
-      <origin rpy="0       1.57079  0" xyz="0      0      0.0025"/>
-      <geometry>
-        <box size="0.005 0.020 0.092"/>
-      </geometry>
-    </visual>
-  </link>
-
-  <link name="2_link">
-    <inertial>
-      <mass value="0.192"/>
-      <origin rpy="0  0  0" xyz="0  0  0"/>
-      <inertia ixx="390949e-9" ixy="-59e-9" ixz="346e-9" iyy="400197e-9" iyz="355e-9" izz="73725e-9"/>
-    </inertial>
-    <collision name="2_link_collision">
-      <origin rpy="0  0  0" xyz="0     0    -0.046"/>
-      <geometry>
-        <cylinder length=".071" radius=".029"/>
-      </geometry>
-    </collision>
-    <collision name="2_link_pad_collision">
-      <origin rpy="0  0  0" xyz="0.0265  0     -0.046"/>
-      <geometry>
-        <box size="0.005 0.020 0.071"/>
-      </geometry>
-    </collision>
-    <visual name="2_link_visual">
-      <origin rpy="0  0  0" xyz="0       0      -0.03549"/>
-      <geometry>
-        <cylinder length=".092" radius=".029"/>
-      </geometry>
-    </visual>
-    <visual name="2_link_pad_visual">
-      <origin rpy="0  0  0" xyz="0.0265   0      -0.03549"/>
-      <geometry>
-        <box size="0.005 0.020 0.092"/>
-      </geometry>
-    </visual>
-  </link>
-
-  <link name="3_link">
-    <inertial>
-      <mass value="0.192"/>
-      <origin rpy="0  0  0" xyz="0  0  0"/>
-      <inertia ixx="390949e-9" ixy="-59e-9" ixz="346e-9" iyy="400197e-9" iyz="355e-9" izz="73725e-9"/>
-    </inertial>
-    <collision name="3_link_collision">
-      <origin rpy="0  0  0" xyz="0     0    -0.046"/>
-      <geometry>
-        <cylinder length=".071" radius=".029"/>
-      </geometry>
-    </collision>
-    <collision name="3_link_pad_collision">
-      <origin rpy="0  0  0" xyz="0.0265  0     -0.046"/>
-      <geometry>
-        <box size="0.005 0.020 0.071"/>
-      </geometry>
-    </collision>
-    <visual name="3_link_visual">
-      <origin rpy="0  0  0" xyz="0       0      -0.03549"/>
-      <geometry>
-        <cylinder length=".092" radius=".029"/>
-      </geometry>
-      <material name="light_black"/>
-    </visual>
-    <visual name="3_link_pad_visual">
-      <origin rpy="0  0  0" xyz="0.0265   0      -0.03549"/>
-      <geometry>
-        <box size="0.005 0.020 0.092"/>
-      </geometry>
-    </visual>
-  </link>
-
-  <link name="4_link">
-    <inertial>
-      <mass value="0.192"/>
-      <origin rpy="0  0  0" xyz="0  0  0"/>
-      <inertia ixx="390949e-9" ixy="-59e-9" ixz="346e-9" iyy="400197e-9" iyz="355e-9" izz="73725e-9"/>
-    </inertial>
-    <collision name="4_link_collision">
-      <origin rpy="0  0  0" xyz="0     0    -0.046"/>
-      <geometry>
-        <cylinder length=".071" radius=".029"/>
-      </geometry>
-    </collision>
-    <collision name="4_link_pad_collision">
-      <origin rpy="0  0  0" xyz="0.0265  0     -0.046"/>
-      <geometry>
-        <box size="0.005 0.020 0.071"/>
-      </geometry>
-    </collision>
-    <visual name="4_link_visual">
-      <origin rpy="0  0  0" xyz="0       0      -0.03549"/>
-      <geometry>
-        <cylinder length=".092" radius=".029"/>
-      </geometry>
-    </visual>
-    <visual name="4_link_pad_visual">
-      <origin rpy="0  0  0" xyz="0.0265   0      -0.03549"/>
-      <geometry>
-        <box size="0.005 0.020 0.092"/>
-      </geometry>
-    </visual>
-  </link>
-
-  <link name="5_link">
-    <inertial>
-      <mass value="0.192"/>
-      <origin rpy="0  0  0" xyz="0  0  0"/>
-      <inertia ixx="390949e-9" ixy="-59e-9" ixz="346e-9" iyy="400197e-9" iyz="355e-9" izz="73725e-9"/>
-    </inertial>
-    <collision name="5_link_collision">
-      <origin rpy="0  0  0" xyz="0     0    -0.046"/>
-      <geometry>
-        <cylinder length=".071" radius=".029"/>
-      </geometry>
-    </collision>
-    <collision name="5_link_pad_collision">
-      <origin rpy="0  0  0" xyz="0.0265  0     -0.046"/>
-      <geometry>
-        <box size="0.005 0.020 0.071"/>
-      </geometry>
-    </collision>
-    <visual name="5_link_visual">
-      <origin rpy="0  0  0" xyz="0       0      -0.03549"/>
-      <geometry>
-        <cylinder length=".092" radius=".029"/>
-      </geometry>
-      <material name="light_black"/>
-    </visual>
-    <visual name="5_link_pad_visual">
-      <origin rpy="0  0  0" xyz="0.0265   0      -0.03549"/>
-      <geometry>
-        <box size="0.005 0.020 0.092"/>
-      </geometry>
-    </visual>
-  </link>
-
-  <link name="6_link">
-    <inertial>
-      <mass value="0.192"/>
-      <origin rpy="0  0  0" xyz="0  0  0"/>
-      <inertia ixx="390949e-9" ixy="-59e-9" ixz="346e-9" iyy="400197e-9" iyz="355e-9" izz="73725e-9"/>
-    </inertial>
-    <collision name="6_link_collision">
-      <origin rpy="0  0  0" xyz="0     0    -0.046"/>
-      <geometry>
-        <cylinder length=".071" radius=".029"/>
-      </geometry>
-    </collision>
-    <collision name="6_link_pad_collision">
-      <origin rpy="0  0  0" xyz="0.0265  0     -0.046"/>
-      <geometry>
-        <box size="0.005 0.020 0.071"/>
-      </geometry>
-    </collision>
-    <visual name="6_link_visual">
-      <origin rpy="0  0  0" xyz="0       0      -0.03549"/>
-      <geometry>
-        <cylinder length=".092" radius=".029"/>
-      </geometry>
-    </visual>
-    <visual name="6_link_pad_visual">
-      <origin rpy="0  0  0" xyz="0.0265   0      -0.03549"/>
-      <geometry>
-        <box size="0.005 0.020 0.092"/>
-      </geometry>
-    </visual>
-  </link>
-
-  <link name="7_link">
-    <inertial>
-      <mass value="0.192"/>
-      <origin rpy="0  0  0" xyz="0  0  0"/>
-      <inertia ixx="390949e-9" ixy="-59e-9" ixz="346e-9" iyy="400197e-9" iyz="355e-9" izz="73725e-9"/>
-    </inertial>
-    <collision name="7_link_collision">
-      <origin rpy="0  0  0" xyz="0     0    -0.046"/>
-      <geometry>
-        <cylinder length=".071" radius=".029"/>
-      </geometry>
-    </collision>
-    <collision name="7_link_pad_collision">
-      <origin rpy="0  0  0" xyz="0.0265  0     -0.046"/>
-      <geometry>
-        <box size="0.005 0.020 0.071"/>
-      </geometry>
-    </collision>
-    <visual name="7_link_visual">
-      <origin rpy="0  0  0" xyz="0       0      -0.03549"/>
-      <geometry>
-        <cylinder length=".092" radius=".029"/>
-      </geometry>
-      <material name="light_black"/>
-    </visual>
-    <visual name="7_link_pad_visual">
-      <origin rpy="0  0  0" xyz="0.0265   0      -0.03549"/>
-      <geometry>
-        <box size="0.005 0.020 0.092"/>
-      </geometry>
-    </visual>
-  </link>
-
-  <link name="8_link">
-    <inertial>
-      <mass value="0.192"/>
-      <origin rpy="0  0  0" xyz="0  0  0"/>
-      <inertia ixx="390949e-9" ixy="-59e-9" ixz="346e-9" iyy="400197e-9" iyz="355e-9" izz="73725e-9"/>
-    </inertial>
-    <collision name="8_link_collision">
-      <origin rpy="0  0  0" xyz="0     0    -0.046"/>
-      <geometry>
-        <cylinder length=".071" radius=".029"/>
-      </geometry>
-    </collision>
-    <collision name="8_link_pad_collision">
-      <origin rpy="0  0  0" xyz="0.0265  0     -0.046"/>
-      <geometry>
-        <box size="0.005 0.020 0.071"/>
-      </geometry>
-    </collision>
-    <visual name="8_link_visual">
-      <origin rpy="0  0  0" xyz="0       0      -0.03549"/>
-      <geometry>
-        <cylinder length=".092" radius=".029"/>
-      </geometry>
-    </visual>
-    <visual name="8_link_pad_visual">
-      <origin rpy="0  0  0" xyz="0.0265   0      -0.03549"/>
-      <geometry>
-        <box size="0.005 0.020 0.092"/>
-      </geometry>
-    </visual>
-  </link>
-
-  <link name="9_link">
-    <inertial>
-      <mass value="0.192"/>
-      <origin rpy="0  0  0" xyz="0  0  0"/>
-      <inertia ixx="390949e-9" ixy="-59e-9" ixz="346e-9" iyy="400197e-9" iyz="355e-9" izz="73725e-9"/>
-    </inertial>
-    <collision name="9_link_collision">
-      <origin rpy="0  0  0" xyz="0     0    -0.046"/>
-      <geometry>
-        <cylinder length=".071" radius=".029"/>
-      </geometry>
-    </collision>
-    <collision name="9_link_pad_collision">
-      <origin rpy="0  0  0" xyz="0.0265  0     -0.046"/>
-      <geometry>
-        <box size="0.005 0.020 0.071"/>
-      </geometry>
-    </collision>
-    <visual name="9_link_visual">
-      <origin rpy="0  0  0" xyz="0       0      -0.03549"/>
-      <geometry>
-        <cylinder length=".092" radius=".029"/>
-      </geometry>
-      <material name="light_black"/>
-    </visual>
-    <visual name="9_link_pad_visual">
-      <origin rpy="0  0  0" xyz="0.0265   0      -0.03549"/>
-      <geometry>
-        <box size="0.005 0.020 0.092"/>
-      </geometry>
-    </visual>
-  </link>
-
-  <link name="10_link">
-    <inertial>
-      <mass value="0.192"/>
-      <origin rpy="0  0  0" xyz="0  0  0"/>
-      <inertia ixx="390949e-9" ixy="-59e-9" ixz="346e-9" iyy="400197e-9" iyz="355e-9" izz="73725e-9"/>
-    </inertial>
-    <collision name="10_link_collision">
-      <origin rpy="0  0  0" xyz="0     0    -0.046"/>
-      <geometry>
-        <cylinder length=".071" radius=".029"/>
-      </geometry>
-    </collision>
-    <collision name="10_link_pad_collision">
-      <origin rpy="0  0  0" xyz="0.0265  0     -0.046"/>
-      <geometry>
-        <box size="0.005 0.020 0.071"/>
-      </geometry>
-    </collision>
-    <visual name="10_link_visual">
-      <origin rpy="0  0  0" xyz="0       0      -0.03549"/>
-      <geometry>
-        <cylinder length=".092" radius=".029"/>
-      </geometry>
-    </visual>
-    <visual name="10_link_pad_visual">
-      <origin rpy="0  0  0" xyz="0.0265   0      -0.03549"/>
-      <geometry>
-        <box size="0.005 0.020 0.092"/>
-      </geometry>
-    </visual>
-  </link>
-
-  <link name="11_link">
-    <inertial>
-      <mass value="0.192"/>
-      <origin rpy="0  0  0" xyz="0  0  0"/>
-      <inertia ixx="390949e-9" ixy="-59e-9" ixz="346e-9" iyy="400197e-9" iyz="355e-9" izz="73725e-9"/>
-    </inertial>
-    <collision name="11_link_collision">
-      <origin rpy="0  0  0" xyz="0     0    -0.046"/>
-      <geometry>
-        <cylinder length=".071" radius=".029"/>
-      </geometry>
-    </collision>
-    <collision name="11_link_pad_collision">
-      <origin rpy="0  0  0" xyz="0.0265  0     -0.046"/>
-      <geometry>
-        <box size="0.005 0.020 0.071"/>
-      </geometry>
-    </collision>
-    <visual name="11_link_visual">
-      <origin rpy="0  0  0" xyz="0       0      -0.03549"/>
-      <geometry>
-        <cylinder length=".092" radius=".029"/>
-      </geometry>
-      <material name="light_black"/>
-    </visual>
-    <visual name="11_link_pad_visual">
-      <origin rpy="0  0  0" xyz="0.0265   0      -0.03549"/>
-      <geometry>
-        <box size="0.005 0.020 0.092"/>
-      </geometry>
-    </visual>
-  </link>
-
-  <link name="12_tail">
-    <inertial>
-      <mass value="0.192"/>
-      <origin rpy="0  0  0" xyz="0  0  0"/>
-      <inertia ixx="390949e-9" ixy="-59e-9" ixz="346e-9" iyy="400197e-9" iyz="355e-9" izz="73725e-9"/>
-    </inertial>
-    <collision name="12_tail_collision">
-      <origin rpy="0  0  0" xyz="0     0    -0.046"/>
-      <geometry>
-        <cylinder length=".071" radius=".029"/>
-      </geometry>
-    </collision>
-    <collision name="12_tail_pad_collision">
-      <origin rpy="0  0  0" xyz="0.0265  0     -0.046"/>
-      <geometry>
-        <box size="0.005 0.020 0.071"/>
-      </geometry>
-    </collision>
-    <visual name="12_tail_visual">
-      <origin rpy="0  0  0" xyz="0       0      -0.03549"/>
-      <geometry>
-        <cylinder length=".092" radius=".029"/>
-      </geometry>
-    </visual>
-    <visual name="12_tail_pad_visual">
-      <origin rpy="0  0  0" xyz="0.0265   0      -0.03549"/>
-      <geometry>
-        <box size="0.005 0.020 0.092"/>
-      </geometry>
-    </visual>
-  </link>
-
-  <joint name="1_joint" type="revolute">
-    <parent link="1_head"/>
-    <child link="2_link"/>
+  <joint name="kiro_v2__1_joint" type="revolute">
+    <parent link="kiro_v2__1_head"/>
+    <child link="kiro_v2__2_link"/>
     <origin rpy="0       1.57079  0" xyz="-0.03549  0       0.029"/>
     <axis xyz="0  1  0"/>
     <limit effort="1.70775" lower="-1.57079632679" upper="1.57079632679" velocity="4.2"/>
   </joint>
-
-  <joint name="2_joint" type="revolute">
-    <parent link="2_link"/>
-    <child link="3_link"/>
+  <joint name="kiro_v2__2_joint" type="revolute">
+    <parent link="kiro_v2__2_link"/>
+    <child link="kiro_v2__3_link"/>
     <origin rpy="0  0  0" xyz="0       0      -0.07099"/>
     <axis xyz="-1  0  0"/>
     <limit effort="1.70775" lower="-1.57079632679" upper="1.57079632679" velocity="4.2"/>
   </joint>
-
-  <joint name="3_joint" type="revolute">
-    <parent link="3_link"/>
-    <child link="4_link"/>
+  <joint name="kiro_v2__3_joint" type="revolute">
+    <parent link="kiro_v2__3_link"/>
+    <child link="kiro_v2__4_link"/>
     <origin rpy="0  0  0" xyz="0       0      -0.07099"/>
     <axis xyz="0  1  0"/>
     <limit effort="1.70775" lower="-1.57079632679" upper="1.57079632679" velocity="4.2"/>
   </joint>
-
-  <joint name="4_joint" type="revolute">
-    <parent link="4_link"/>
-    <child link="5_link"/>
+  <joint name="kiro_v2__4_joint" type="revolute">
+    <parent link="kiro_v2__4_link"/>
+    <child link="kiro_v2__5_link"/>
     <origin rpy="0  0  0" xyz="0       0      -0.07099"/>
     <axis xyz="-1  0  0"/>
     <limit effort="1.70775" lower="-1.57079632679" upper="1.57079632679" velocity="4.2"/>
   </joint>
-
-  <joint name="5_joint" type="revolute">
-    <parent link="5_link"/>
-    <child link="6_link"/>
+  <joint name="kiro_v2__5_joint" type="revolute">
+    <parent link="kiro_v2__5_link"/>
+    <child link="kiro_v2__6_link"/>
     <origin rpy="0  0  0" xyz="0       0      -0.07099"/>
     <axis xyz="0  1  0"/>
     <limit effort="1.70775" lower="-1.57079632679" upper="1.57079632679" velocity="4.2"/>
   </joint>
-
-  <joint name="6_joint" type="revolute">
-    <parent link="6_link"/>
-    <child link="7_link"/>
+  <joint name="kiro_v2__6_joint" type="revolute">
+    <parent link="kiro_v2__6_link"/>
+    <child link="kiro_v2__7_link"/>
     <origin rpy="0  0  0" xyz="0       0      -0.07099"/>
     <axis xyz="-1  0  0"/>
     <limit effort="1.70775" lower="-1.57079632679" upper="1.57079632679" velocity="4.2"/>
   </joint>
-
-  <joint name="7_joint" type="revolute">
-    <parent link="7_link"/>
-    <child link="8_link"/>
+  <joint name="kiro_v2__7_joint" type="revolute">
+    <parent link="kiro_v2__7_link"/>
+    <child link="kiro_v2__8_link"/>
     <origin rpy="0  0  0" xyz="0       0      -0.07099"/>
     <axis xyz="0  1  0"/>
     <limit effort="1.70775" lower="-1.57079632679" upper="1.57079632679" velocity="4.2"/>
   </joint>
-
-  <joint name="8_joint" type="revolute">
-    <parent link="8_link"/>
-    <child link="9_link"/>
+  <joint name="kiro_v2__8_joint" type="revolute">
+    <parent link="kiro_v2__8_link"/>
+    <child link="kiro_v2__9_link"/>
     <origin rpy="0  0  0" xyz="0       0      -0.07099"/>
     <axis xyz="-1  0  0"/>
     <limit effort="1.70775" lower="-1.57079632679" upper="1.57079632679" velocity="4.2"/>
   </joint>
-
-  <joint name="9_joint" type="revolute">
-    <parent link="9_link"/>
-    <child link="10_link"/>
+  <joint name="kiro_v2__9_joint" type="revolute">
+    <parent link="kiro_v2__9_link"/>
+    <child link="kiro_v2__10_link"/>
     <origin rpy="0  0  0" xyz="0       0      -0.07099"/>
     <axis xyz="0  1  0"/>
     <limit effort="1.70775" lower="-1.57079632679" upper="1.57079632679" velocity="4.2"/>
   </joint>
-
-  <joint name="10_joint" type="revolute">
-    <parent link="10_link"/>
-    <child link="11_link"/>
+  <joint name="kiro_v2__10_joint" type="revolute">
+    <parent link="kiro_v2__10_link"/>
+    <child link="kiro_v2__11_link"/>
     <origin rpy="0  0  0" xyz="0       0      -0.07099"/>
     <axis xyz="-1  0  0"/>
     <limit effort="1.70775" lower="-1.57079632679" upper="1.57079632679" velocity="4.2"/>
   </joint>
-
-  <joint name="11_joint" type="revolute">
-    <parent link="11_link"/>
-    <child link="12_tail"/>
+  <joint name="kiro_v2__11_joint" type="revolute">
+    <parent link="kiro_v2__11_link"/>
+    <child link="kiro_v2__12_tail"/>
     <origin rpy="0  0  0" xyz="0       0      -0.07099"/>
     <axis xyz="0  1  0"/>
     <limit effort="1.70775" lower="-1.57079632679" upper="1.57079632679" velocity="4.2"/>
   </joint>
-  
-  <!-- URDF END -->
-
+  <link name="kiro_v2__1_head">
+    <inertial>
+      <mass value="0.192"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <inertia ixx="390949e-9" ixy="-59e-9" ixz="346e-9" iyy="400197e-9" iyz="355e-9" izz="73725e-9"/>
+    </inertial>
+    <collision name="kiro_v2__1_head_collision">
+      <origin rpy="0       1.57079  0" xyz="0     0     0.029"/>
+      <geometry>
+        <cylinder length=".092" radius=".029"/>
+      </geometry>
+    </collision>
+    <collision name="kiro_v2__1_head_pad_collision">
+      <origin rpy="0       1.57079  0" xyz="0      0      0.0025"/>
+      <geometry>
+        <box size="0.005 0.020 0.092"/>
+      </geometry>
+    </collision>
+    <visual name="kiro_v2__1_head_visual">
+      <origin rpy="0       1.57079  0" xyz="0     0     0.029"/>
+      <geometry>
+        <cylinder length=".092" radius=".029"/>
+      </geometry>
+    </visual>
+    <visual name="kiro_v2__1_head_pad_visual">
+      <origin rpy="0       1.57079  0" xyz="0      0      0.0025"/>
+      <geometry>
+        <box size="0.005 0.020 0.092"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="kiro_v2__2_link">
+    <inertial>
+      <mass value="0.192"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <inertia ixx="390949e-9" ixy="-59e-9" ixz="346e-9" iyy="400197e-9" iyz="355e-9" izz="73725e-9"/>
+    </inertial>
+    <collision name="kiro_v2__2_link_collision">
+      <origin rpy="0  0  0" xyz="0     0    -0.046"/>
+      <geometry>
+        <cylinder length=".071" radius=".029"/>
+      </geometry>
+    </collision>
+    <collision name="kiro_v2__2_link_pad_collision">
+      <origin rpy="0  0  0" xyz="0.0265  0     -0.046"/>
+      <geometry>
+        <box size="0.005 0.020 0.071"/>
+      </geometry>
+    </collision>
+    <visual name="kiro_v2__2_link_visual">
+      <origin rpy="0  0  0" xyz="0       0      -0.03549"/>
+      <geometry>
+        <cylinder length=".092" radius=".029"/>
+      </geometry>
+    </visual>
+    <visual name="kiro_v2__2_link_pad_visual">
+      <origin rpy="0  0  0" xyz="0.0265   0      -0.03549"/>
+      <geometry>
+        <box size="0.005 0.020 0.092"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="kiro_v2__3_link">
+    <inertial>
+      <mass value="0.192"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <inertia ixx="390949e-9" ixy="-59e-9" ixz="346e-9" iyy="400197e-9" iyz="355e-9" izz="73725e-9"/>
+    </inertial>
+    <collision name="kiro_v2__3_link_collision">
+      <origin rpy="0  0  0" xyz="0     0    -0.046"/>
+      <geometry>
+        <cylinder length=".071" radius=".029"/>
+      </geometry>
+    </collision>
+    <collision name="kiro_v2__3_link_pad_collision">
+      <origin rpy="0  0  0" xyz="0.0265  0     -0.046"/>
+      <geometry>
+        <box size="0.005 0.020 0.071"/>
+      </geometry>
+    </collision>
+    <visual name="kiro_v2__3_link_visual">
+      <origin rpy="0  0  0" xyz="0       0      -0.03549"/>
+      <geometry>
+        <cylinder length=".092" radius=".029"/>
+      </geometry>
+    </visual>
+    <visual name="kiro_v2__3_link_pad_visual">
+      <origin rpy="0  0  0" xyz="0.0265   0      -0.03549"/>
+      <geometry>
+        <box size="0.005 0.020 0.092"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="kiro_v2__4_link">
+    <inertial>
+      <mass value="0.192"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <inertia ixx="390949e-9" ixy="-59e-9" ixz="346e-9" iyy="400197e-9" iyz="355e-9" izz="73725e-9"/>
+    </inertial>
+    <collision name="kiro_v2__4_link_collision">
+      <origin rpy="0  0  0" xyz="0     0    -0.046"/>
+      <geometry>
+        <cylinder length=".071" radius=".029"/>
+      </geometry>
+    </collision>
+    <collision name="kiro_v2__4_link_pad_collision">
+      <origin rpy="0  0  0" xyz="0.0265  0     -0.046"/>
+      <geometry>
+        <box size="0.005 0.020 0.071"/>
+      </geometry>
+    </collision>
+    <visual name="kiro_v2__4_link_visual">
+      <origin rpy="0  0  0" xyz="0       0      -0.03549"/>
+      <geometry>
+        <cylinder length=".092" radius=".029"/>
+      </geometry>
+    </visual>
+    <visual name="kiro_v2__4_link_pad_visual">
+      <origin rpy="0  0  0" xyz="0.0265   0      -0.03549"/>
+      <geometry>
+        <box size="0.005 0.020 0.092"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="kiro_v2__5_link">
+    <inertial>
+      <mass value="0.192"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <inertia ixx="390949e-9" ixy="-59e-9" ixz="346e-9" iyy="400197e-9" iyz="355e-9" izz="73725e-9"/>
+    </inertial>
+    <collision name="kiro_v2__5_link_collision">
+      <origin rpy="0  0  0" xyz="0     0    -0.046"/>
+      <geometry>
+        <cylinder length=".071" radius=".029"/>
+      </geometry>
+    </collision>
+    <collision name="kiro_v2__5_link_pad_collision">
+      <origin rpy="0  0  0" xyz="0.0265  0     -0.046"/>
+      <geometry>
+        <box size="0.005 0.020 0.071"/>
+      </geometry>
+    </collision>
+    <visual name="kiro_v2__5_link_visual">
+      <origin rpy="0  0  0" xyz="0       0      -0.03549"/>
+      <geometry>
+        <cylinder length=".092" radius=".029"/>
+      </geometry>
+    </visual>
+    <visual name="kiro_v2__5_link_pad_visual">
+      <origin rpy="0  0  0" xyz="0.0265   0      -0.03549"/>
+      <geometry>
+        <box size="0.005 0.020 0.092"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="kiro_v2__6_link">
+    <inertial>
+      <mass value="0.192"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <inertia ixx="390949e-9" ixy="-59e-9" ixz="346e-9" iyy="400197e-9" iyz="355e-9" izz="73725e-9"/>
+    </inertial>
+    <collision name="kiro_v2__6_link_collision">
+      <origin rpy="0  0  0" xyz="0     0    -0.046"/>
+      <geometry>
+        <cylinder length=".071" radius=".029"/>
+      </geometry>
+    </collision>
+    <collision name="kiro_v2__6_link_pad_collision">
+      <origin rpy="0  0  0" xyz="0.0265  0     -0.046"/>
+      <geometry>
+        <box size="0.005 0.020 0.071"/>
+      </geometry>
+    </collision>
+    <visual name="kiro_v2__6_link_visual">
+      <origin rpy="0  0  0" xyz="0       0      -0.03549"/>
+      <geometry>
+        <cylinder length=".092" radius=".029"/>
+      </geometry>
+    </visual>
+    <visual name="kiro_v2__6_link_pad_visual">
+      <origin rpy="0  0  0" xyz="0.0265   0      -0.03549"/>
+      <geometry>
+        <box size="0.005 0.020 0.092"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="kiro_v2__7_link">
+    <inertial>
+      <mass value="0.192"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <inertia ixx="390949e-9" ixy="-59e-9" ixz="346e-9" iyy="400197e-9" iyz="355e-9" izz="73725e-9"/>
+    </inertial>
+    <collision name="kiro_v2__7_link_collision">
+      <origin rpy="0  0  0" xyz="0     0    -0.046"/>
+      <geometry>
+        <cylinder length=".071" radius=".029"/>
+      </geometry>
+    </collision>
+    <collision name="kiro_v2__7_link_pad_collision">
+      <origin rpy="0  0  0" xyz="0.0265  0     -0.046"/>
+      <geometry>
+        <box size="0.005 0.020 0.071"/>
+      </geometry>
+    </collision>
+    <visual name="kiro_v2__7_link_visual">
+      <origin rpy="0  0  0" xyz="0       0      -0.03549"/>
+      <geometry>
+        <cylinder length=".092" radius=".029"/>
+      </geometry>
+    </visual>
+    <visual name="kiro_v2__7_link_pad_visual">
+      <origin rpy="0  0  0" xyz="0.0265   0      -0.03549"/>
+      <geometry>
+        <box size="0.005 0.020 0.092"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="kiro_v2__8_link">
+    <inertial>
+      <mass value="0.192"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <inertia ixx="390949e-9" ixy="-59e-9" ixz="346e-9" iyy="400197e-9" iyz="355e-9" izz="73725e-9"/>
+    </inertial>
+    <collision name="kiro_v2__8_link_collision">
+      <origin rpy="0  0  0" xyz="0     0    -0.046"/>
+      <geometry>
+        <cylinder length=".071" radius=".029"/>
+      </geometry>
+    </collision>
+    <collision name="kiro_v2__8_link_pad_collision">
+      <origin rpy="0  0  0" xyz="0.0265  0     -0.046"/>
+      <geometry>
+        <box size="0.005 0.020 0.071"/>
+      </geometry>
+    </collision>
+    <visual name="kiro_v2__8_link_visual">
+      <origin rpy="0  0  0" xyz="0       0      -0.03549"/>
+      <geometry>
+        <cylinder length=".092" radius=".029"/>
+      </geometry>
+    </visual>
+    <visual name="kiro_v2__8_link_pad_visual">
+      <origin rpy="0  0  0" xyz="0.0265   0      -0.03549"/>
+      <geometry>
+        <box size="0.005 0.020 0.092"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="kiro_v2__9_link">
+    <inertial>
+      <mass value="0.192"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <inertia ixx="390949e-9" ixy="-59e-9" ixz="346e-9" iyy="400197e-9" iyz="355e-9" izz="73725e-9"/>
+    </inertial>
+    <collision name="kiro_v2__9_link_collision">
+      <origin rpy="0  0  0" xyz="0     0    -0.046"/>
+      <geometry>
+        <cylinder length=".071" radius=".029"/>
+      </geometry>
+    </collision>
+    <collision name="kiro_v2__9_link_pad_collision">
+      <origin rpy="0  0  0" xyz="0.0265  0     -0.046"/>
+      <geometry>
+        <box size="0.005 0.020 0.071"/>
+      </geometry>
+    </collision>
+    <visual name="kiro_v2__9_link_visual">
+      <origin rpy="0  0  0" xyz="0       0      -0.03549"/>
+      <geometry>
+        <cylinder length=".092" radius=".029"/>
+      </geometry>
+    </visual>
+    <visual name="kiro_v2__9_link_pad_visual">
+      <origin rpy="0  0  0" xyz="0.0265   0      -0.03549"/>
+      <geometry>
+        <box size="0.005 0.020 0.092"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="kiro_v2__10_link">
+    <inertial>
+      <mass value="0.192"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <inertia ixx="390949e-9" ixy="-59e-9" ixz="346e-9" iyy="400197e-9" iyz="355e-9" izz="73725e-9"/>
+    </inertial>
+    <collision name="kiro_v2__10_link_collision">
+      <origin rpy="0  0  0" xyz="0     0    -0.046"/>
+      <geometry>
+        <cylinder length=".071" radius=".029"/>
+      </geometry>
+    </collision>
+    <collision name="kiro_v2__10_link_pad_collision">
+      <origin rpy="0  0  0" xyz="0.0265  0     -0.046"/>
+      <geometry>
+        <box size="0.005 0.020 0.071"/>
+      </geometry>
+    </collision>
+    <visual name="kiro_v2__10_link_visual">
+      <origin rpy="0  0  0" xyz="0       0      -0.03549"/>
+      <geometry>
+        <cylinder length=".092" radius=".029"/>
+      </geometry>
+    </visual>
+    <visual name="kiro_v2__10_link_pad_visual">
+      <origin rpy="0  0  0" xyz="0.0265   0      -0.03549"/>
+      <geometry>
+        <box size="0.005 0.020 0.092"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="kiro_v2__11_link">
+    <inertial>
+      <mass value="0.192"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <inertia ixx="390949e-9" ixy="-59e-9" ixz="346e-9" iyy="400197e-9" iyz="355e-9" izz="73725e-9"/>
+    </inertial>
+    <collision name="kiro_v2__11_link_collision">
+      <origin rpy="0  0  0" xyz="0     0    -0.046"/>
+      <geometry>
+        <cylinder length=".071" radius=".029"/>
+      </geometry>
+    </collision>
+    <collision name="kiro_v2__11_link_pad_collision">
+      <origin rpy="0  0  0" xyz="0.0265  0     -0.046"/>
+      <geometry>
+        <box size="0.005 0.020 0.071"/>
+      </geometry>
+    </collision>
+    <visual name="kiro_v2__11_link_visual">
+      <origin rpy="0  0  0" xyz="0       0      -0.03549"/>
+      <geometry>
+        <cylinder length=".092" radius=".029"/>
+      </geometry>
+    </visual>
+    <visual name="kiro_v2__11_link_pad_visual">
+      <origin rpy="0  0  0" xyz="0.0265   0      -0.03549"/>
+      <geometry>
+        <box size="0.005 0.020 0.092"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="kiro_v2__12_tail">
+    <inertial>
+      <mass value="0.192"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <inertia ixx="390949e-9" ixy="-59e-9" ixz="346e-9" iyy="400197e-9" iyz="355e-9" izz="73725e-9"/>
+    </inertial>
+    <collision name="kiro_v2__12_tail_collision">
+      <origin rpy="0  0  0" xyz="0     0    -0.046"/>
+      <geometry>
+        <cylinder length=".071" radius=".029"/>
+      </geometry>
+    </collision>
+    <collision name="kiro_v2__12_tail_pad_collision">
+      <origin rpy="0  0  0" xyz="0.0265  0     -0.046"/>
+      <geometry>
+        <box size="0.005 0.020 0.071"/>
+      </geometry>
+    </collision>
+    <visual name="kiro_v2__12_tail_visual">
+      <origin rpy="0  0  0" xyz="0       0      -0.03549"/>
+      <geometry>
+        <cylinder length=".092" radius=".029"/>
+      </geometry>
+    </visual>
+    <visual name="kiro_v2__12_tail_pad_visual">
+      <origin rpy="0  0  0" xyz="0.0265   0      -0.03549"/>
+      <geometry>
+        <box size="0.005 0.020 0.092"/>
+      </geometry>
+    </visual>
+  </link>
 </robot>

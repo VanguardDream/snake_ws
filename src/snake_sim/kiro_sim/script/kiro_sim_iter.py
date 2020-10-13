@@ -21,7 +21,6 @@ from std_msgs.msg import Float64
 from sensor_msgs.msg import Joy
 from std_srvs.srv import Empty
 
-
 pub_com_1 = rospy.Publisher('/kiro_v2/1_joint_position_controller/command', data_class=Float64, queue_size= 1)
 pub_com_2 = rospy.Publisher('/kiro_v2/2_joint_position_controller/command', data_class=Float64, queue_size= 1)
 pub_com_3 = rospy.Publisher('/kiro_v2/3_joint_position_controller/command', data_class=Float64, queue_size= 1)
@@ -55,7 +54,7 @@ phase_hor = (3.1415 / 180) * 30
 amp_ver = (3.1415 / 180) * 45
 amp_hor = (3.1415 / 180) * 60
 
-gait_type = 'sinuous'
+gait_type = 'sidewind'
 
 gazebo_pause = True
 
@@ -112,9 +111,7 @@ def motionCalculate(gait):
         thetas[6] = amp_ver * math.cos(count + phase_ver * 7)
         thetas[8] = amp_ver * math.cos(count + phase_ver * 9)
         thetas[10] = amp_ver * math.cos(count + phase_ver * 11)
-
-    else: 
-        if gait == 'sinuous':
+    elif gait == 'sinuous':
             thetas[0] = amp_ver * math.cos(count)
             thetas[1] = amp_hor * math.cos(0.5 * count + phase_hor * 1.5)
 
@@ -132,66 +129,129 @@ def motionCalculate(gait):
 
             thetas[10] = amp_ver * math.cos(count + phase_ver * 10)
             thetas[11] = amp_hor * math.cos(0.5 * count + phase_hor * 6.5)
-    
+    elif gait == 'sidewind':
+            thetas[1] = amp_hor * math.cos(count)
+            thetas[0] = amp_ver * math.cos(count + ( phase_ver/ 2) * 1)
+
+            thetas[3] = amp_hor * math.cos(count + phase_hor * 1)
+            thetas[2] = amp_ver * math.cos(count + ( phase_ver/ 2) * 3)
+
+            thetas[5] = amp_hor * math.cos(count + phase_hor * 2)
+            thetas[4] = amp_ver * math.cos(count + ( phase_ver/ 2) * 5)
+
+            thetas[7] = amp_hor * math.cos(count + phase_hor * 3)
+            thetas[6] = amp_ver * math.cos(count + ( phase_ver/ 2) * 7)
+
+            thetas[9] = amp_hor * math.cos(count + phase_hor * 4)
+            thetas[8] = amp_ver * math.cos(count + ( phase_ver/ 2) * 9)
+
+            thetas[11] = amp_hor * math.cos(count + phase_hor * 5)
+            thetas[10] = amp_ver * math.cos(count + ( phase_ver/ 2) * 11)
     count+=1
 
 def commandZero():
-    pub_com_1.publish(0.0)
-    pub_com_2.publish(0.0)
-    pub_com_3.publish(0.0)
-    pub_com_4.publish(0.0)
-    pub_com_5.publish(0.0)
-    pub_com_6.publish(0.0)
-    pub_com_7.publish(0.0)
-    pub_com_8.publish(0.0)
-    pub_com_9.publish(0.0)
-    pub_com_10.publish(0.0)
-    pub_com_11.publish(0.0)
+        pub_com_1.publish(0.0)
+        pub_com_2.publish(0.0)
+        pub_com_3.publish(0.0)
+        pub_com_4.publish(0.0)
+        pub_com_5.publish(0.0)
+        pub_com_6.publish(0.0)
+        pub_com_7.publish(0.0)
+        pub_com_8.publish(0.0)
+        pub_com_9.publish(0.0)
+        pub_com_10.publish(0.0)
+        pub_com_11.publish(0.0)
+
 
 def commandSend():
-    rospy.sleep(os_delay_sec)
-    pub_com_1.publish(thetas[0])
-    rospy.sleep(delay_sec)
+    if (gait_type == 'vertical' or gait_type == 'sinuous'):
+        rospy.sleep(os_delay_sec)
+        pub_com_1.publish(thetas[0])
+        rospy.sleep(delay_sec)
 
-    rospy.sleep(os_delay_sec)
-    pub_com_2.publish(thetas[1])
-    rospy.sleep(delay_sec)
+        rospy.sleep(os_delay_sec)
+        pub_com_2.publish(thetas[1])
+        rospy.sleep(delay_sec)
 
-    rospy.sleep(os_delay_sec)
-    pub_com_3.publish(thetas[2])
-    rospy.sleep(delay_sec)
+        rospy.sleep(os_delay_sec)
+        pub_com_3.publish(thetas[2])
+        rospy.sleep(delay_sec)
 
-    rospy.sleep(os_delay_sec)
-    pub_com_4.publish(thetas[3])
-    rospy.sleep(delay_sec)
+        rospy.sleep(os_delay_sec)
+        pub_com_4.publish(thetas[3])
+        rospy.sleep(delay_sec)
 
-    rospy.sleep(os_delay_sec)
-    pub_com_5.publish(thetas[4])
-    rospy.sleep(delay_sec)
+        rospy.sleep(os_delay_sec)
+        pub_com_5.publish(thetas[4])
+        rospy.sleep(delay_sec)
 
-    rospy.sleep(os_delay_sec)
-    pub_com_6.publish(thetas[5])
-    rospy.sleep(delay_sec)
+        rospy.sleep(os_delay_sec)
+        pub_com_6.publish(thetas[5])
+        rospy.sleep(delay_sec)
 
-    rospy.sleep(os_delay_sec)
-    pub_com_7.publish(thetas[6])
-    rospy.sleep(delay_sec)
+        rospy.sleep(os_delay_sec)
+        pub_com_7.publish(thetas[6])
+        rospy.sleep(delay_sec)
 
-    rospy.sleep(os_delay_sec)
-    pub_com_8.publish(thetas[7])
-    rospy.sleep(delay_sec)
+        rospy.sleep(os_delay_sec)
+        pub_com_8.publish(thetas[7])
+        rospy.sleep(delay_sec)
 
-    rospy.sleep(os_delay_sec)
-    pub_com_9.publish(thetas[8])
-    rospy.sleep(delay_sec)
+        rospy.sleep(os_delay_sec)
+        pub_com_9.publish(thetas[8])
+        rospy.sleep(delay_sec)
 
-    rospy.sleep(os_delay_sec)
-    pub_com_10.publish(thetas[9])
-    rospy.sleep(delay_sec)
+        rospy.sleep(os_delay_sec)
+        pub_com_10.publish(thetas[9])
+        rospy.sleep(delay_sec)
 
-    rospy.sleep(os_delay_sec)
-    pub_com_11.publish(thetas[10])
-    rospy.sleep(delay_sec)
+        rospy.sleep(os_delay_sec)
+        pub_com_11.publish(thetas[10])
+        rospy.sleep(delay_sec)
+    elif gait_type == 'sidewind':
+        rospy.sleep(os_delay_sec)
+        pub_com_2.publish(thetas[1])
+        rospy.sleep(delay_sec)
+
+        rospy.sleep(os_delay_sec)
+        pub_com_1.publish(thetas[0])
+        rospy.sleep(delay_sec)
+
+        rospy.sleep(os_delay_sec)
+        pub_com_4.publish(thetas[3])
+        rospy.sleep(delay_sec)
+
+        rospy.sleep(os_delay_sec)
+        pub_com_3.publish(thetas[2])
+        rospy.sleep(delay_sec)
+
+        rospy.sleep(os_delay_sec)
+        pub_com_6.publish(thetas[5])
+        rospy.sleep(delay_sec)
+
+        rospy.sleep(os_delay_sec)
+        pub_com_5.publish(thetas[4])
+        rospy.sleep(delay_sec)
+
+        rospy.sleep(os_delay_sec)
+        pub_com_8.publish(thetas[7])
+        rospy.sleep(delay_sec)
+
+        rospy.sleep(os_delay_sec)
+        pub_com_7.publish(thetas[6])
+        rospy.sleep(delay_sec)
+
+        rospy.sleep(os_delay_sec)
+        pub_com_10.publish(thetas[9])
+        rospy.sleep(delay_sec)
+
+        rospy.sleep(os_delay_sec)
+        pub_com_9.publish(thetas[8])
+        rospy.sleep(delay_sec)
+
+        rospy.sleep(os_delay_sec)
+        pub_com_11.publish(thetas[10])
+        rospy.sleep(delay_sec)
 
 def clearSimulation():
     global csv_file
