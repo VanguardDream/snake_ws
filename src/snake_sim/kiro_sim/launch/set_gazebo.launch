@@ -32,7 +32,7 @@
   <arg name="custom_ground" default="$(find kiro_sim)/worlds/custom_ground.sdf" />
 
   <node name="sdf_spawner_1" pkg="gazebo_ros" type="spawn_model"
-            args="-z 0.0 
+            args="-z 0.005 
             -sdf 
             -model ground
             -file $(arg custom_ground)

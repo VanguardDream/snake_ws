@@ -44,7 +44,7 @@ thetas = []
 count = 0
 
 # p1, p2, p3, p4, p5 = 5000, 45, 30, 60, 30
-p1, p2, p3, p4, p5 = 8300, 80, 300, 70, 230
+p1, p2, p3, p4, p5 = 3150, 35, 35, 70, 230
 
 os_delay_sec = rospy.Duration(nsecs=(p1 * 1000)) 
 delay_sec = rospy.Duration(nsecs=3000) 
@@ -53,7 +53,7 @@ phase_ver = (3.1415 / 180) * p3
 amp_hor = (3.1415 / 180) * p4
 phase_hor = (3.1415 / 180) * p5
 
-gait_type = 'vertical'
+gait_type = 'sinuous'
 
 gazebo_pause = True
 
@@ -89,9 +89,9 @@ def callback_states(data):
     sim_data_buffer.append([ros_secs,ros_nsecs,gazebo_model_pose_x,gazebo_model_pose_y,gazebo_model_pose_z])
     # print("%d | %d | %f" %(ros_secs,ros_nsecs,gazebo_model_pose_x),end='\n')
 
-def gazeboPhysicsSet(time_step_value = 0.001, max_update_rate_value = 1000):
+def gazeboPhysicsSet(time_step_value = 0.001, max_update_rate_value = 1000, gravity_x = 0, gravity_y = 0, gravity_z = -9.81):
 # Set as Default Gazebo Property
-    gravity_value = Vector3(x = 0, y = 0, z = -9.81)
+    gravity_value = Vector3(x = gravity_x, y = gravity_y, z = gravity_z)
     ODE_value = ODEPhysics(auto_disable_bodies = False, sor_pgs_precon_iters = 0, sor_pgs_iters = 50, sor_pgs_w = 1.3, sor_pgs_rms_error_tol = 0, contact_surface_layer = 0.001, contact_max_correcting_vel = 100.0, cfm = 0.0, erp = 0.2, max_contacts = 20)
 
     rospy.wait_for_service('/gazebo/set_physics_properties')

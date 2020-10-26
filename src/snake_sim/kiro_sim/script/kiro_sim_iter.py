@@ -77,9 +77,11 @@ def callback_states(data):
 
     global sim_data_buffer
 
-    gazebo_model_pose_x = data.pose[1].position.x
-    gazebo_model_pose_y = data.pose[1].position.y
-    gazebo_model_pose_z = data.pose[1].position.z
+    robot_idx = data.name.index('kiro_v2')
+
+    gazebo_model_pose_x = data.pose[robot_idx].position.x
+    gazebo_model_pose_y = data.pose[robot_idx].position.y
+    gazebo_model_pose_z = data.pose[robot_idx].position.z
 
     sim_data_buffer.append([ros_secs,ros_nsecs,gazebo_model_pose_x,gazebo_model_pose_y,gazebo_model_pose_z])
     # print("%d | %d | %f" %(ros_secs,ros_nsecs,gazebo_model_pose_x),end='\n')
