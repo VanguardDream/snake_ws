@@ -49,12 +49,12 @@ thetas = []
 count = 0
 os_delay_sec = rospy.Duration(nsecs=5000000)
 delay_sec = rospy.Duration(nsecs=3000)
-phase_ver = (3.1415 / 180) * 30
+phase_ver = (3.1415 / 180) * 0
 phase_hor = (3.1415 / 180) * 30
-amp_ver = (3.1415 / 180) * 45
+amp_ver = (3.1415 / 180) * 0
 amp_hor = (3.1415 / 180) * 60
 
-gait_type = 'sidewind'
+gait_type = 'sinuous'
 
 gazebo_pause = True
 
@@ -115,22 +115,22 @@ def motionCalculate(gait):
         thetas[10] = amp_ver * math.cos(count + phase_ver * 11)
     elif gait == 'sinuous':
             thetas[0] = amp_ver * math.cos(count)
-            thetas[1] = amp_hor * math.cos(0.5 * count + phase_hor * 1.5)
+            thetas[1] = amp_hor * math.cos(0.5 * count + phase_hor * 1)
 
             thetas[2] = amp_ver * math.cos(count + phase_ver * 2)
-            thetas[3] = amp_hor * math.cos(0.5 * count + phase_hor * 2.5)
+            thetas[3] = amp_hor * math.cos(0.5 * count + phase_hor * 3)
 
             thetas[4] = amp_ver * math.cos(count + phase_ver * 4)
-            thetas[5] = amp_hor * math.cos(0.5 * count + phase_hor * 3.5)
+            thetas[5] = amp_hor * math.cos(0.5 * count + phase_hor * 5)
 
             thetas[6] = amp_ver * math.cos(count + phase_ver * 6)
-            thetas[7] = amp_hor * math.cos(0.5 * count + phase_hor * 4.5)
+            thetas[7] = amp_hor * math.cos(0.5 * count + phase_hor * 7)
             
             thetas[8] = amp_ver * math.cos(count + phase_ver * 8)
-            thetas[9] = amp_hor * math.cos(0.5 * count + phase_hor * 5.5)
+            thetas[9] = amp_hor * math.cos(0.5 * count + phase_hor * 9)
 
             thetas[10] = amp_ver * math.cos(count + phase_ver * 10)
-            thetas[11] = amp_hor * math.cos(0.5 * count + phase_hor * 6.5)
+            thetas[11] = amp_hor * math.cos(0.5 * count + phase_hor * 11)
     elif gait == 'sidewind':
             thetas[1] = amp_hor * math.cos(count)
             thetas[0] = amp_ver * math.cos(count + ( phase_ver/ 2) * 1)
@@ -373,7 +373,6 @@ if __name__ == '__main__':
     t_prior = rospy.Time.now()
 
     while not rospy.is_shutdown():
-
         t_now = rospy.Time.now()
 
         if t_now - t_prior > rospy.Duration(secs=10):
@@ -387,5 +386,6 @@ if __name__ == '__main__':
         rate.sleep()
         # rospy.sleep(0.5)
         # rospy.spin()
-        
+
+    
         

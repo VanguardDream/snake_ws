@@ -44,7 +44,9 @@ thetas = []
 count = 0
 
 # p1, p2, p3, p4, p5 = 5000, 45, 30, 60, 30
-p1, p2, p3, p4, p5 = 3150, 35, 35, 70, 230
+# p1, p2, p3, p4, p5 = 3150, 35, 35, 70, 230 #Sinuous Default
+# p1, p2, p3, p4, p5 = 2200, 0, 0, 70, 50 #Horizental
+p1, p2, p3, p4, p5 = 22000, 15, 50, 70, 50 #Serpentine
 
 os_delay_sec = rospy.Duration(nsecs=(p1 * 1000)) 
 delay_sec = rospy.Duration(nsecs=3000) 
@@ -82,9 +84,11 @@ def callback_states(data):
 
     global sim_data_buffer
 
-    gazebo_model_pose_x = data.pose[1].position.x
-    gazebo_model_pose_y = data.pose[1].position.y
-    gazebo_model_pose_z = data.pose[1].position.z
+    robot_idx = data.name.index('kiro_v2')
+
+    gazebo_model_pose_x = data.pose[robot_idx].position.x
+    gazebo_model_pose_y = data.pose[robot_idx].position.y
+    gazebo_model_pose_z = data.pose[robot_idx].position.z
 
     sim_data_buffer.append([ros_secs,ros_nsecs,gazebo_model_pose_x,gazebo_model_pose_y,gazebo_model_pose_z])
     # print("%d | %d | %f" %(ros_secs,ros_nsecs,gazebo_model_pose_x),end='\n')
@@ -118,22 +122,22 @@ def motionCalculate(gait):
         thetas[10] = amp_ver * math.cos(count + phase_ver * 11)
     elif gait == 'sinuous':
             thetas[0] = amp_ver * math.cos(count)
-            thetas[1] = amp_hor * math.cos(0.5 * count + phase_hor * 1.5)
+            thetas[1] = amp_hor * math.cos(count + phase_hor * 1)
 
             thetas[2] = amp_ver * math.cos(count + phase_ver * 2)
-            thetas[3] = amp_hor * math.cos(0.5 * count + phase_hor * 2.5)
+            thetas[3] = amp_hor * math.cos(count + phase_hor * 3)
 
             thetas[4] = amp_ver * math.cos(count + phase_ver * 4)
-            thetas[5] = amp_hor * math.cos(0.5 * count + phase_hor * 3.5)
+            thetas[5] = amp_hor * math.cos(count + phase_hor * 5)
 
             thetas[6] = amp_ver * math.cos(count + phase_ver * 6)
-            thetas[7] = amp_hor * math.cos(0.5 * count + phase_hor * 4.5)
+            thetas[7] = amp_hor * math.cos(count + phase_hor * 7)
             
             thetas[8] = amp_ver * math.cos(count + phase_ver * 8)
-            thetas[9] = amp_hor * math.cos(0.5 * count + phase_hor * 5.5)
+            thetas[9] = amp_hor * math.cos(count + phase_hor * 9)
 
             thetas[10] = amp_ver * math.cos(count + phase_ver * 10)
-            thetas[11] = amp_hor * math.cos(0.5 * count + phase_hor * 6.5)
+            thetas[11] = amp_hor * math.cos(count + phase_hor * 11)
     elif gait == 'sidewind':
             thetas[1] = amp_hor * math.cos(count)
             thetas[0] = amp_ver * math.cos(count + ( phase_ver/ 2) * 1)
@@ -170,39 +174,7 @@ def commandZero():
 def commandSend():
     if (gait_type == 'vertical' or gait_type == 'sinuous'):
         rospy.sleep(os_delay_sec)
-        pub_com_1.publish(thetas[0])
-        rospy.sleep(delay_sec)
-
-        rospy.sleep(os_delay_sec)
-        pub_com_2.publish(thetas[1])
-        rospy.sleep(delay_sec)
-
-        rospy.sleep(os_delay_sec)
-        pub_com_3.publish(thetas[2])
-        rospy.sleep(delay_sec)
-
-        rospy.sleep(os_delay_sec)
-        pub_com_4.publish(thetas[3])
-        rospy.sleep(delay_sec)
-
-        rospy.sleep(os_delay_sec)
-        pub_com_5.publish(thetas[4])
-        rospy.sleep(delay_sec)
-
-        rospy.sleep(os_delay_sec)
-        pub_com_6.publish(thetas[5])
-        rospy.sleep(delay_sec)
-
-        rospy.sleep(os_delay_sec)
-        pub_com_7.publish(thetas[6])
-        rospy.sleep(delay_sec)
-
-        rospy.sleep(os_delay_sec)
-        pub_com_8.publish(thetas[7])
-        rospy.sleep(delay_sec)
-
-        rospy.sleep(os_delay_sec)
-        pub_com_9.publish(thetas[8])
+        pub_com_11.publish(thetas[10])
         rospy.sleep(delay_sec)
 
         rospy.sleep(os_delay_sec)
@@ -210,8 +182,41 @@ def commandSend():
         rospy.sleep(delay_sec)
 
         rospy.sleep(os_delay_sec)
-        pub_com_11.publish(thetas[10])
+        pub_com_9.publish(thetas[8])
         rospy.sleep(delay_sec)
+
+        rospy.sleep(os_delay_sec)
+        pub_com_8.publish(thetas[7])
+        rospy.sleep(delay_sec)
+
+        rospy.sleep(os_delay_sec)
+        pub_com_7.publish(thetas[6])
+        rospy.sleep(delay_sec)
+
+        rospy.sleep(os_delay_sec)
+        pub_com_6.publish(thetas[5])
+        rospy.sleep(delay_sec)
+
+        rospy.sleep(os_delay_sec)
+        pub_com_5.publish(thetas[4])
+        rospy.sleep(delay_sec)
+
+        rospy.sleep(os_delay_sec)
+        pub_com_4.publish(thetas[3])
+        rospy.sleep(delay_sec)
+
+        rospy.sleep(os_delay_sec)
+        pub_com_3.publish(thetas[2])
+        rospy.sleep(delay_sec)
+
+        rospy.sleep(os_delay_sec)
+        pub_com_2.publish(thetas[1])
+        rospy.sleep(delay_sec)
+
+        rospy.sleep(os_delay_sec)
+        pub_com_1.publish(thetas[0])
+        rospy.sleep(delay_sec)
+
     elif gait_type == 'sidewind':
         rospy.sleep(os_delay_sec)
         pub_com_1.publish(thetas[1])
@@ -377,10 +382,10 @@ if __name__ == '__main__':
     # csv_line_writer.writerow([str(time.strftime('%c', time.localtime(time.time()))),os_delay_sec.to_sec(),amp_ver / (3.1415 /180),phase_ver / (3.1415 /180),"start"])
 
     rospy.init_node('snake_gait_generator',anonymous=True)
-    rate = rospy.Rate(20)
+    # rate = rospy.Rate(20)
     pauseSimulation()
 
-    gazeboPhysicsSet(max_update_rate_value=3000)
+    gazeboPhysicsSet(max_update_rate_value=500)
 
     t_prior = rospy.Time.now()
 
@@ -396,6 +401,6 @@ if __name__ == '__main__':
 
         commandSend()
         rospy.sleep(delay_sec)
-        rate.sleep()
+        # rate.sleep()
         # rospy.sleep(0.5)
         # rospy.spin()
