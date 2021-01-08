@@ -2,23 +2,49 @@
 
 import cls_gait
 import rospy
+import math
 
 from gazebo_msgs.srv import DeleteModel
 from gazebo_msgs.srv import SpawnModel
 
+_PI = 3.1415
+input_gait = cls_gait.gait()
+sim_generator = cls_gait.generator()
+
 #Return : Gait params, Simulation Duration
-def _sim_signal(Duration = 5.0, Gait_name = 'vertical', AMP_Ver = 15, AMP_Hor = 45 , Phase_Ver = 60 , Phase_hor = 80, Time_delay = 110):
+def _sim_signal(Duration = 5.0, Gait_name = 'vertical', AMP_Ver = 15, AMP_Hor = 45 , Phase_Ver = 60 , Phase_hor = 80, Time_delay = 110, Time_period = 1000):
 
     # Declare gait class and time duration.
-    input_gait = cls_gait.gait()
+    global input_gait
+    global sim_generator
+
     time_duration = Duration
 
     # Starting gait parameters. The gait may have local minima so we need to optimize operation iteratively.
-    input_gait.set_parameters(Gait_name,AMP_Ver,AMP_Hor,Phase_Ver,Phase_hor,Time_delay)
+    input_gait.set_parameters(Gait_name,AMP_Ver,AMP_Hor,Phase_Ver,Phase_hor,Time_delay,Time_period)
+
+    # Load parameter to generator
+    sim_generator.gaitType = input_gait
 
     return input_gait.get_parameters(), time_duration
 
-print(_sim_signal())
-
 def _reset_simulation():
-    
+    pass    
+
+def _calculate_gait(counter): #이 함수는 해상도 만큼의 슬롯으로 머리의 각도를 미리 계산하는 함수
+    for i in range(16):
+        if i % 2 == 0:
+            sim_generator.motorTheta[i] = round(sim_generator.gaitType.ampVertical * math.sin( (2 * _PI / (sim_generator.gaitType.timePeriod / 10)) * counter + (i / 2) * (_PI/180.0) * sim_generator.gaitType.phaseVertical), 1)
+        else:
+            sim_generator.motorTheta[i] = round(sim_generator.gaitType.ampHorizontal * math.sin( (2 * _PI / (sim_generator.gaitType.timePeriod / 10)) * counter + ((i - 1) / 2) * (_PI/180.0) * sim_generator.gaitType.phaseHorizontal), 1)
+    return 0
+
+def _command_gait():
+    pass
+
+print(_sim_signal(Duration = 5.0, Gait_name = 'vertical', AMP_Ver = 30, AMP_Hor = 45 , Phase_Ver = 60 , Phase_hor = 80, Time_delay = 110, Time_period = 1000))
+
+for i in range(101):
+    _calculate_gait(i)
+    print(sim_generator.motorTheta)
+    rospy.sleep(0.01)
