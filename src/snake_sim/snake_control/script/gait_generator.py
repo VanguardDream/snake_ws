@@ -34,6 +34,15 @@ def _sim_signal(Duration = 5.0, Gait_name = 'vertical', AMP_Ver = 15, AMP_Hor = 
 
     return input_gait.get_parameters(), time_duration
 
+def _set_sim_timer():
+    thread_sim_reset.start()
+    pass
+
+def _stop_sim_timer():
+    thread_sim_reset._stop()
+    thread_sim_reset.join()
+    pass
+
 def _reset_simulation():
     while True:
         print('reset done!')
@@ -75,7 +84,9 @@ counter = 0
 
 # 알고리즘1 - 5초 혹은 정해진 시간마다 reset 시키고 결과 값을 출력하는 알고리즘
 thread_sim_reset = threading.Thread(target=_reset_simulation, args=())
-thread_sim_reset.start()
+thread_sim_reset.setDaemon(True)
+
+_set_sim_timer()
 
 while not rospy.is_shutdown():
     _calculate_gait(counter)
@@ -83,6 +94,8 @@ while not rospy.is_shutdown():
     counter = counter + 1
     cal_rate.sleep()
 
+    if counter > 100:
+        _stop_sim_timer()
 
     # 알고리즘2 - 
 
