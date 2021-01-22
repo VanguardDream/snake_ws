@@ -68,43 +68,35 @@ def _sim_signal_cb(data):
         _sim_signal(data.duration, data.gaitType, data.amp_v, data.amp_h, data.phase_v, data.phase_h, data.delay, data.period)
         cal_rate = rospy.Rate(1000/data.delay)
 
-#Init ROS node.
-rospy.init_node('snake_gait_generator',anonymous=True)
+if __name__ == "__main__":
 
-#Subscribe Signal (GaitParamter)
-sim_signal = rospy.Subscriber('sim_signal', GaitParameter, _sim_signal_cb)
+    #Init ROS node.
+    rospy.init_node('snake_gait_generator',anonymous=True)
 
-#Set Gait Parameter & ROS Rate
-_sim_signal(Duration = 5.0, Gait_name = 'vertical', AMP_Ver = 30, AMP_Hor = 45 , Phase_Ver = 60 , Phase_hor = 80, Time_delay = 110, Time_period = 100)
-motorRate = 1000/input_gait.timeDelay
-cal_rate = rospy.Rate(motorRate)
-sim_reset_rate = rospy.Rate(0.2)
+    #Subscribe Signal (GaitParamter)
+    sim_signal = rospy.Subscriber('sim_signal', GaitParameter, _sim_signal_cb)
 
-counter = 0
+    #Set Gait Parameter & ROS Rate
+    _sim_signal(Duration = 5.0, Gait_name = 'vertical', AMP_Ver = 30, AMP_Hor = 45 , Phase_Ver = 60 , Phase_hor = 80, Time_delay = 110, Time_period = 100)
+    motorRate = 1000/input_gait.timeDelay
+    cal_rate = rospy.Rate(motorRate)
+    sim_reset_rate = rospy.Rate(0.2)
 
-# 알고리즘1 - 5초 혹은 정해진 시간마다 reset 시키고 결과 값을 출력하는 알고리즘
-thread_sim_reset = threading.Thread(target=_reset_simulation, args=())
-thread_sim_reset.setDaemon(True)
+    counter = 0
 
-_set_sim_timer()
+    # # 알고리즘1 - 5초 혹은 정해진 시간마다 reset 시키고 결과 값을 출력하는 알고리즘
+    # thread_sim_reset = threading.Thread(target=_reset_simulation, args=())
+    # thread_sim_reset.setDaemon(True)
 
-while not rospy.is_shutdown():
-    _calculate_gait(counter)
-    print(sim_generator.motorTheta)
-    counter = counter + 1
-    cal_rate.sleep()
+    # _set_sim_timer()
 
-    if counter > 100:
-        _stop_sim_timer()
+    while not rospy.is_shutdown():
+        _calculate_gait(counter)
+        print(sim_generator.motorTheta)
+        counter = counter + 1
+        cal_rate.sleep()
 
-    # 알고리즘2 - 
+        if counter > 100:
+            _stop_sim_timer()
 
-
-
-
-
-
-# for i in range(101):
-#     _calculate_gait(i)
-#     print(sim_generator.motorTheta)
-#     rospy.sleep(0.01)
+        # 알고리즘2 - 
