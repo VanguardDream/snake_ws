@@ -7,6 +7,7 @@ import threading
 import csv
 import time
 import random
+import numpy as np
 
 from gazebo_msgs.srv import SetPhysicsProperties
 from gazebo_msgs.msg import ODEPhysics
@@ -22,6 +23,9 @@ from sensor_msgs.msg import Joy
 from std_srvs.srv import Empty
 
 gait_case = 0
+findGradientDirection = True
+num_op_variable = 4
+origin_variable = [0,0,0,0]
 
 pub_com_1 = rospy.Publisher('/snake/1_joint_position_controller/command', data_class=Float64, queue_size= 1)
 pub_com_2 = rospy.Publisher('/snake/2_joint_position_controller/command', data_class=Float64, queue_size= 1)
@@ -55,11 +59,11 @@ thetas = []
 count = 0
 os_delay_sec = rospy.Duration(nsecs=5000000)
 delay_sec = rospy.Duration(0.01)
-phase_ver = (3.1415 / 180) * 0
-phase_hor = (3.1415 / 180) * 0
+phase_ver = (3.1415 / 180) * 30
+phase_hor = (3.1415 / 180) * 60
 
-amp_ver = (3.1415 / 180) * 5
-amp_hor = (3.1415 / 180) * 0
+amp_ver = (3.1415 / 180) * 30
+amp_hor = (3.1415 / 180) * 20
 
 gait_type = 'sinuous'
 
@@ -360,6 +364,9 @@ def clearSimulation():
     global gait_type
     global gait_case
     global count
+    global num_op_variable
+    global findGradientDirection
+    global origin_variable
 
     commandZero()
 
@@ -407,21 +414,35 @@ def clearSimulation():
 
     gait_case = gait_case + 1
 
-    # Optimization Code - Sinuous
-    hor_case = gait_case // 432
-    ver_case = gait_case % 432
+    # My Optimizer
+    if findGradientDirection:
+        Op_direction_find()
+    else:
+        findGradientDirection = True
+        num_op_variable = 4
 
-    tmp_amp_ver = (ver_case // 36) % 12
-    tmp_phase_ver = ver_case % 36
+        amp_ver = random.randint(0,12) * 5 * (3.1415 /180)
+        amp_hor = random.randint(0,12) * 5 * (3.1415 /180)
+        phase_ver = random.randint(0,36)* 10 * (3.1415 /180)
+        phase_hor = random.randint(0,36)* 10 * (3.1415 /180)
+    
 
-    tmp_amp_hor = hor_case // 36
-    tmp_phase_hor = hor_case % 36
 
-    amp_ver = (tmp_amp_ver + 1) * 5 * (3.1415 /180)
-    phase_ver = tmp_phase_ver * 10 * (3.1415 /180)
+    # # Optimization Code - Sinuous
+    # hor_case = gait_case // 432
+    # ver_case = gait_case % 432
 
-    amp_hor = (tmp_amp_hor) * 5 * (3.1415 /180)
-    phase_hor = tmp_phase_hor * 10 * (3.1415 /180)
+    # tmp_amp_ver = (ver_case // 36) % 12
+    # tmp_phase_ver = ver_case % 36
+
+    # tmp_amp_hor = hor_case // 36
+    # tmp_phase_hor = hor_case % 36
+
+    # amp_ver = (tmp_amp_ver + 1) * 5 * (3.1415 /180)
+    # phase_ver = tmp_phase_ver * 10 * (3.1415 /180)
+
+    # amp_hor = (tmp_amp_hor) * 5 * (3.1415 /180)
+    # phase_hor = tmp_phase_hor * 10 * (3.1415 /180)
 
     # # Optimization Code - Ver
     # quotient = gait_case // 36
@@ -495,6 +516,51 @@ def setTimer(sec = 5, func = clearSimulation):
     threading.Timer(sec,func).start()
 
 
+def Op_direction_find():
+
+    global findGradientDirection
+    global num_op_variable
+    global origin_variable
+    global amp_ver
+    global amp_hor
+    global phase_ver
+    global phase_hor
+    
+    if(findGradientDirection and num_op_variable == 4):
+        #원래 벡터 저장
+        origin_variable[0] = (round(    amp_ver / (3.1415 / 180)   ))
+        origin_variable[1] = (round(    amp_hor / (3.1415 / 180)   ))
+        origin_variable[2] = (round(    phase_ver / (3.1415 / 180)   ))
+        origin_variable[3] = (round(    phase_hor / (3.1415 / 180)   ))
+
+    if num_op_variable == 4:
+        amp_ver = amp_ver + 5 * (3.1415 /180)
+        amp_hor = origin_variable[1] * (3.1415 /180)
+        phase_ver = origin_variable[2] * (3.1415 /180)
+        phase_hor = origin_variable[3] * (3.1415 /180)
+        num_op_variable = num_op_variable - 1
+    elif num_op_variable == 3:
+        amp_ver = origin_variable[0] * (3.1415 /180)
+        amp_hor = amp_hor + 5 * (3.1415 /180)
+        phase_ver = origin_variable[2] * (3.1415 /180)
+        phase_hor = origin_variable[3] * (3.1415 /180)
+        num_op_variable = num_op_variable - 1
+    elif num_op_variable == 2:
+        amp_ver = origin_variable[0] * (3.1415 /180)
+        amp_hor = origin_variable[1] * (3.1415 /180)
+        phase_ver = phase_ver + 10 * (3.1415 /180)
+        phase_hor = origin_variable[3] * (3.1415 /180)
+        num_op_variable = num_op_variable - 1
+    elif num_op_variable == 1:
+        amp_ver = origin_variable[0] * (3.1415 /180)
+        amp_hor = origin_variable[1] * (3.1415 /180)
+        phase_ver = origin_variable[2] * (3.1415 /180)
+        phase_hor = phase_hor + 10 * (3.1415 /180)
+        num_op_variable = num_op_variable - 1
+        findGradientDirection = False
+    else:
+        pass
+
 if __name__ == '__main__':
     sub_clock = rospy.Subscriber('/clock',Clock,callback_clock,queue_size=1000)
     sub_model_states = rospy.Subscriber('/gazebo/model_states',ModelStates,callback_states,queue_size=1000)
@@ -517,7 +583,7 @@ if __name__ == '__main__':
         
         t_now = rospy.Time.now()
 
-        if t_now - t_prior > rospy.Duration(secs=10):
+        if t_now - t_prior > rospy.Duration(secs=1):
             rospy.loginfo("3")
             t_prior =  t_now
             clearSimulation()
