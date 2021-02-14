@@ -55,14 +55,13 @@ thetas = []
 count = 0
 os_delay_sec = rospy.Duration(nsecs=5000000)
 delay_sec = rospy.Duration(0.01)
-phase_ver = (3.1415 / 180) * 80
-# phase_hor = (3.1415 / 180) * 30
-phase_hor = 0
-amp_ver = (3.1415 / 180) * 315
-# amp_hor = (3.1415 / 180) * 60
-amp_hor = 0
+phase_ver = (3.1415 / 180) * 0
+phase_hor = (3.1415 / 180) * 0
 
-gait_type = 'vertical'
+amp_ver = (3.1415 / 180) * 5
+amp_hor = (3.1415 / 180) * 0
+
+gait_type = 'sinuous'
 
 gazebo_pause = True
 
@@ -367,7 +366,7 @@ def clearSimulation():
     rospy.sleep(rospy.Duration(1.0))
 
     pauseSimulation()
-    resetSimulation()
+    # resetSimulation()
 
     diff_x = []
     diff_y = []
@@ -408,15 +407,34 @@ def clearSimulation():
 
     gait_case = gait_case + 1
 
-    quotient = gait_case // 360
-    remainder = gait_case % 360
+    # Optimization Code - Sinuous
+    hor_case = gait_case // 432
+    ver_case = gait_case % 432
+
+    tmp_amp_ver = (ver_case // 36) % 12
+    tmp_phase_ver = ver_case % 36
+
+    tmp_amp_hor = hor_case // 36
+    tmp_phase_hor = hor_case % 36
+
+    amp_ver = (tmp_amp_ver + 1) * 5 * (3.1415 /180)
+    phase_ver = tmp_phase_ver * 10 * (3.1415 /180)
+
+    amp_hor = (tmp_amp_hor) * 5 * (3.1415 /180)
+    phase_hor = tmp_phase_hor * 10 * (3.1415 /180)
+
+    # # Optimization Code - Ver
+    # quotient = gait_case // 36
+    # remainder = gait_case % 36
     
-    # amp_ver = quotient * (3.1415 /180)
-    amp_ver = random.randint(0,90) * (3.1415 /180)
-    amp_hor = random.randint(0,90) * (3.1415 /180)
-    # phase_ver = remainder * (3.1415 /180)
-    phase_ver = random.randint(0,360) * (3.1415 /180)
-    phase_hor = random.randint(0,360) * (3.1415 /180)
+    # amp_ver = (quotient+1) * 5 * (3.1415 /180)
+    # phase_ver = remainder * 10 * (3.1415 /180)
+
+    # # Testing Randomize
+    # amp_ver = random.randint(0,90) * (3.1415 /180)
+    # amp_hor = random.randint(0,90) * (3.1415 /180)
+    # phase_ver = random.randint(0,360) * (3.1415 /180)
+    # phase_hor = random.randint(0,360) * (3.1415 /180)
     
     # tmp_sec = random.randint(50,800)
     # os_delay_sec = rospy.Duration(nsecs = tmp_sec * 10000)

@@ -186,13 +186,22 @@ def pauseSimulation():
             print("Service did not process request: " + str(exc))
 
 def resetWorld():
-    rospy.wait_for_service('/gazebo/reset_world')
+    # rospy.wait_for_service('/gazebo/reset_world')
+    # try:
+    #     reset_world = rospy.ServiceProxy('/gazebo/reset_world', Empty)
+    #     reset_world()
+    #     print('World is reseted!')
+    # except rospy.ServiceException as exc:
+    #     print("Service did not process request: " + str(exc))
+
+    rospy.wait_for_service('/gazebo/reset_simulation')
     try:
-        reset_world = rospy.ServiceProxy('/gazebo/reset_world', Empty)
-        reset_world()
-        print('World is reseted!')
+        reset_sim = rospy.ServiceProxy('gazebo/reset_simulation', Empty)
+        reset_sim()
+        pass
     except rospy.ServiceException as exc:
         print("Service did not process request: " + str(exc))
+        pass
 
 
 
