@@ -22,10 +22,18 @@ from std_msgs.msg import Float64
 from sensor_msgs.msg import Joy
 from std_srvs.srv import Empty
 
+
+# Variable for Optimization
 gait_case = 0
 findGradientDirection = True
+flagLocalMinima = False
 num_op_variable = 4
-origin_variable = [0,0,0,0]
+origin_variable = [0,0,0,0,0,0] #A_V, A_H, P_V, P_H, Distance(k), Last Distance(k-1)
+direction_vector = [0,0,0,0] #A_V, A_H, P_V, P_H
+optimized_vector = [0,0,0,0] #A_V, A_H, P_V, P_H
+step_size = 0.5
+dA = 5  #Different of Amplitude
+dP = 10 ##Different of Phase
 
 pub_com_1 = rospy.Publisher('/snake/1_joint_position_controller/command', data_class=Float64, queue_size= 1)
 pub_com_2 = rospy.Publisher('/snake/2_joint_position_controller/command', data_class=Float64, queue_size= 1)
@@ -367,6 +375,7 @@ def clearSimulation():
     global num_op_variable
     global findGradientDirection
     global origin_variable
+    global flagLocalMinima
 
     commandZero()
 
@@ -404,19 +413,19 @@ def clearSimulation():
     else:
         final_z = max(diff_z)
 
+
+    # CSV File writer
     csv_line_writer = csv.writer(csv_file)
 
-    csv_line_writer.writerow([str(time.strftime('%c', time.localtime(time.time()))), "end", gait_type, os_delay_sec.to_sec(), amp_ver / (3.1415 /180), phase_ver / (3.1415 /180), amp_hor / (3.1415 /180), phase_hor / (3.1415 /180), final_x, final_y, final_z])
+    csv_line_writer.writerow([str(time.strftime('%c', time.localtime(time.time()))), "end", gait_type, delay_sec.to_sec(), amp_ver / (3.1415 /180), phase_ver / (3.1415 /180), amp_hor / (3.1415 /180), phase_hor / (3.1415 /180), final_x, final_y, final_z, flagLocalMinima, optimized_vector[0],optimized_vector[1],optimized_vector[2],optimized_vector[3]])
 
     csv_file.close()
     
     resetWorld()
 
-    gait_case = gait_case + 1
-
     # My Optimizer
     if findGradientDirection:
-        Op_direction_find()
+        Op_direction_find(final_x,final_y,final_z)
     else:
         findGradientDirection = True
         num_op_variable = 4
@@ -425,8 +434,20 @@ def clearSimulation():
         amp_hor = random.randint(0,12) * 5 * (3.1415 /180)
         phase_ver = random.randint(0,36)* 10 * (3.1415 /180)
         phase_hor = random.randint(0,36)* 10 * (3.1415 /180)
+
+    if flagLocalMinima:
+        csv_file = open('sim_result.csv', 'a', encoding='utf-8', newline='')
+
+        csv_line_writer = csv.writer(csv_file)
+
+        csv_line_writer.writerow([str(time.strftime('%c', time.localtime(time.time()))), "Local Minima Found Reset Gait", gait_type, delay_sec.to_sec(), amp_ver / (3.1415 /180), phase_ver / (3.1415 /180), amp_hor / (3.1415 /180), phase_hor / (3.1415 /180)])
+
+        csv_file.close()
+
+        flagLocalMinima = False
     
 
+    # gait_case = gait_case + 1
 
     # # Optimization Code - Sinuous
     # hor_case = gait_case // 432
@@ -516,48 +537,106 @@ def setTimer(sec = 5, func = clearSimulation):
     threading.Timer(sec,func).start()
 
 
-def Op_direction_find():
+def Op_direction_find(x = 0,y = 0,z  =0):
 
     global findGradientDirection
+    global flagLocalMinima
+    global direction_vector
     global num_op_variable
     global origin_variable
     global amp_ver
     global amp_hor
     global phase_ver
     global phase_hor
+    global optimized_vector
     
     if(findGradientDirection and num_op_variable == 4):
         #원래 벡터 저장
-        origin_variable[0] = (round(    amp_ver / (3.1415 / 180)   ))
-        origin_variable[1] = (round(    amp_hor / (3.1415 / 180)   ))
-        origin_variable[2] = (round(    phase_ver / (3.1415 / 180)   ))
-        origin_variable[3] = (round(    phase_hor / (3.1415 / 180)   ))
+        origin_variable[0] = (round(    amp_ver / (3.1415 / 180) , 1   ))
+        origin_variable[1] = (round(    amp_hor / (3.1415 / 180) , 1   ))
+        origin_variable[2] = (round(    phase_ver / (3.1415 / 180) , 1   ))
+        origin_variable[3] = (round(    phase_hor / (3.1415 / 180) , 1  ))
+        origin_variable[4] = x
+
+        if origin_variable[5] > origin_variable[4]:
+            flagLocalMinima = True
+
+            amp_ver = random.randint(0,12) * 5 * (3.1415 /180)
+            amp_hor = random.randint(0,12) * 5 * (3.1415 /180)
+            phase_ver = random.randint(0,36) * 10 * (3.1415 /180)
+            phase_hor = random.randint(0,36) * 10 * (3.1415 /180)
+
+            return 0 #Terminate Optimizing and reset variable
+        else:
+            optimized_vector[0] = origin_variable[0]
+            optimized_vector[1] = origin_variable[1]
+            optimized_vector[2] = origin_variable[2]
+            optimized_vector[3] = origin_variable[3]
+
+
+
 
     if num_op_variable == 4:
-        amp_ver = amp_ver + 5 * (3.1415 /180)
+        amp_ver = amp_ver + dA * (3.1415 /180)
         amp_hor = origin_variable[1] * (3.1415 /180)
         phase_ver = origin_variable[2] * (3.1415 /180)
         phase_hor = origin_variable[3] * (3.1415 /180)
         num_op_variable = num_op_variable - 1
+
     elif num_op_variable == 3:
         amp_ver = origin_variable[0] * (3.1415 /180)
-        amp_hor = amp_hor + 5 * (3.1415 /180)
+        amp_hor = amp_hor + dA * (3.1415 /180)
         phase_ver = origin_variable[2] * (3.1415 /180)
         phase_hor = origin_variable[3] * (3.1415 /180)
         num_op_variable = num_op_variable - 1
+
+        if (origin_variable[4] - x) < 0:
+            direction_vector[0] = 1
+        else:
+            direction_vector[0] = -1
+
     elif num_op_variable == 2:
         amp_ver = origin_variable[0] * (3.1415 /180)
         amp_hor = origin_variable[1] * (3.1415 /180)
-        phase_ver = phase_ver + 10 * (3.1415 /180)
+        phase_ver = phase_ver + dP * (3.1415 /180)
         phase_hor = origin_variable[3] * (3.1415 /180)
         num_op_variable = num_op_variable - 1
+
+        if (origin_variable[4] - x) < 0:
+            direction_vector[1] = 1
+        else:
+            direction_vector[1] = -1
+
     elif num_op_variable == 1:
         amp_ver = origin_variable[0] * (3.1415 /180)
         amp_hor = origin_variable[1] * (3.1415 /180)
         phase_ver = origin_variable[2] * (3.1415 /180)
-        phase_hor = phase_hor + 10 * (3.1415 /180)
+        phase_hor = phase_hor + dP * (3.1415 /180)
         num_op_variable = num_op_variable - 1
-        findGradientDirection = False
+
+        if (origin_variable[4] - x) < 0:
+            direction_vector[2] = 1
+        else:
+            direction_vector[2] = -1
+
+    elif num_op_variable == 0:
+        # findGradientDirection = False
+
+        if (origin_variable[4] - x) < 0:
+            direction_vector[3] = 1
+        else:
+            direction_vector[3] = -1
+
+        # Set k diff_x value to k-1 diff_x
+        origin_variable[5] = origin_variable[4]
+
+        amp_ver = (origin_variable[0] + dA * step_size) * (3.1415 /180)
+        amp_hor = (origin_variable[1] + dA * step_size) * (3.1415 /180)
+        phase_ver = (origin_variable[2] + dP * step_size) * (3.1415 /180)
+        phase_hor = (origin_variable[3] + dP * step_size) * (3.1415 /180)
+
+        num_op_variable = 4
+
     else:
         pass
 
@@ -583,10 +662,12 @@ if __name__ == '__main__':
         
         t_now = rospy.Time.now()
 
-        if t_now - t_prior > rospy.Duration(secs=1):
+        if t_now - t_prior > rospy.Duration(secs=3):
             rospy.loginfo("3")
-            t_prior =  t_now
             clearSimulation()
+
+            t_prior =  rospy.Time.now()
+
             continue     
 
         motionCalculate(gait_type)
