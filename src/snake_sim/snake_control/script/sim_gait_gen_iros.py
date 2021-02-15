@@ -28,12 +28,12 @@ gait_case = 0
 findGradientDirection = True
 flagLocalMinima = False
 num_op_variable = 4
-origin_variable = [0,0,0,0,0,0] #A_V, A_H, P_V, P_H, Distance(k), Last Distance(k-1)
+origin_variable = [0,0,0,0,0,-0.1] #A_V, A_H, P_V, P_H, Distance(k), Last Distance(k-1)
 direction_vector = [0,0,0,0] #A_V, A_H, P_V, P_H
 optimized_vector = [0,0,0,0] #A_V, A_H, P_V, P_H
 step_size = 0.5
-dA = 5  #Different of Amplitude
-dP = 10 ##Different of Phase
+dA = 1  #Different of Amplitude
+dP = 1  #Different of Phase
 
 pub_com_1 = rospy.Publisher('/snake/1_joint_position_controller/command', data_class=Float64, queue_size= 1)
 pub_com_2 = rospy.Publisher('/snake/2_joint_position_controller/command', data_class=Float64, queue_size= 1)
@@ -301,63 +301,63 @@ def commandSend(gait):
         rospy.sleep(delay_sec)
 
     else:
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_2.publish(thetas[1])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_1.publish(thetas[0])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_4.publish(thetas[3])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_3.publish(thetas[2])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_6.publish(thetas[5])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_5.publish(thetas[4])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_8.publish(thetas[7])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_7.publish(thetas[6])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_10.publish(thetas[9])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_9.publish(thetas[8])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_12.publish(thetas[11])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_11.publish(thetas[10])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_14.publish(thetas[13])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_13.publish(thetas[12])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_16.publish(thetas[15])
         rospy.sleep(delay_sec)
 
@@ -662,7 +662,7 @@ if __name__ == '__main__':
         
         t_now = rospy.Time.now()
 
-        if t_now - t_prior > rospy.Duration(secs=3):
+        if t_now - t_prior > rospy.Duration(secs=10):
             rospy.loginfo("3")
             clearSimulation()
 
