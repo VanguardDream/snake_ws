@@ -73,7 +73,7 @@ phase_hor = (3.1415 / 180) * 60
 amp_ver = (3.1415 / 180) * 30
 amp_hor = (3.1415 / 180) * 20
 
-gait_type = 'sinuous'
+gait_type = 'sidewind'
 
 gazebo_pause = True
 
