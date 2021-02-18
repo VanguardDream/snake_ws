@@ -67,13 +67,13 @@ thetas = []
 count = 0
 os_delay_sec = rospy.Duration(nsecs=5000000)
 delay_sec = rospy.Duration(0.01)
-phase_ver = (3.1415 / 180) * 30
+phase_ver = (3.1415 / 180) * 15
 phase_hor = (3.1415 / 180) * 60
 
-amp_ver = (3.1415 / 180) * 30
+amp_ver = (3.1415 / 180) * 40
 amp_hor = (3.1415 / 180) * 20
 
-gait_type = 'sinuous'
+gait_type = 'vertical'
 
 gazebo_pause = True
 
@@ -423,31 +423,39 @@ def clearSimulation():
     
     resetWorld()
 
-    # My Optimizer
-    if findGradientDirection:
-        Op_direction_find(final_x,final_y,final_z)
-    else:
-        findGradientDirection = True
-        num_op_variable = 4
+    # # My Optimizer
+    # if findGradientDirection:
+    #     Op_direction_find(final_x,final_y,final_z)
+    # else:
+    #     findGradientDirection = True
+    #     num_op_variable = 4
 
-        amp_ver = random.randint(0,12) * 5 * (3.1415 /180)
-        amp_hor = random.randint(0,12) * 5 * (3.1415 /180)
-        phase_ver = random.randint(0,36)* 10 * (3.1415 /180)
-        phase_hor = random.randint(0,36)* 10 * (3.1415 /180)
+    #     amp_ver = random.randint(0,12) * 5 * (3.1415 /180)
+    #     amp_hor = random.randint(0,12) * 5 * (3.1415 /180)
+    #     phase_ver = random.randint(0,36)* 10 * (3.1415 /180)
+    #     phase_hor = random.randint(0,36)* 10 * (3.1415 /180)
 
-    if flagLocalMinima:
-        csv_file = open('sim_result.csv', 'a', encoding='utf-8', newline='')
+    # if flagLocalMinima:
+    #     csv_file = open('sim_result.csv', 'a', encoding='utf-8', newline='')
 
-        csv_line_writer = csv.writer(csv_file)
+    #     csv_line_writer = csv.writer(csv_file)
 
-        csv_line_writer.writerow([str(time.strftime('%c', time.localtime(time.time()))), "Local Minima Found Reset Gait", gait_type, delay_sec.to_sec(), amp_ver / (3.1415 /180), phase_ver / (3.1415 /180), amp_hor / (3.1415 /180), phase_hor / (3.1415 /180)])
+    #     csv_line_writer.writerow([str(time.strftime('%c', time.localtime(time.time()))), "Local Minima Found Reset Gait", gait_type, delay_sec.to_sec(), amp_ver / (3.1415 /180), phase_ver / (3.1415 /180), amp_hor / (3.1415 /180), phase_hor / (3.1415 /180)])
 
-        csv_file.close()
+    #     csv_file.close()
 
-        flagLocalMinima = False
+    #     flagLocalMinima = False
     
 
-    # gait_case = gait_case + 1
+    # Search nearby value - vertical
+
+    gait_case = gait_case + 1
+
+    quotient = gait_case // 20
+    remainder = gait_case % 20
+
+    amp_ver = (40 + quotient) * (3.1415 /180)
+    phase_ver = (15 + remainder) * (3.1415 /180)
 
     # # Optimization Code - Sinuous
     # hor_case = gait_case // 432
