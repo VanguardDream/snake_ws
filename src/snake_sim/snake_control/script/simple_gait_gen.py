@@ -42,12 +42,12 @@ thetas = []
 count = 0
 os_delay_sec = rospy.Duration(nsecs=800000)
 delay_sec = rospy.Duration(nsecs=3000)
-amp_ver = (3.1415 / 180) * 57.5
+amp_ver = (3.1415 / 180) * 60
 amp_hor = (3.1415 / 180) * 2.5
-phase_ver =  (3.1415 / 180) * 125
+phase_ver =  (3.1415 / 180) * 25
 phase_hor = (3.1415 / 180) * 35
 
-gait_type = "sinuous"
+gait_type = "vertical"
 gazebo_pause = True
 
 for i in range(16):
@@ -251,63 +251,63 @@ def commandSend(gait):
         rospy.sleep(delay_sec)
 
     else:
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_2.publish(thetas[1])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_1.publish(thetas[0])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_4.publish(thetas[3])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_3.publish(thetas[2])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_6.publish(thetas[5])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_5.publish(thetas[4])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_8.publish(thetas[7])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_7.publish(thetas[6])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_10.publish(thetas[9])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_9.publish(thetas[8])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_12.publish(thetas[11])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_11.publish(thetas[10])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_14.publish(thetas[13])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_13.publish(thetas[12])
         rospy.sleep(delay_sec)
 
-        rospy.sleep(os_delay_sec)
+        # rospy.sleep(os_delay_sec)
         pub_com_16.publish(thetas[15])
         rospy.sleep(delay_sec)
 
@@ -333,22 +333,22 @@ def pauseSimulation():
             print("Service did not process request: " + str(exc))
 
 def resetWorld():
-    # rospy.wait_for_service('/gazebo/reset_world')
-    # try:
-    #     reset_world = rospy.ServiceProxy('/gazebo/reset_world', Empty)
-    #     reset_world()
-    #     print('World is reseted!')
-    # except rospy.ServiceException as exc:
-    #     print("Service did not process request: " + str(exc))
-
-    rospy.wait_for_service('/gazebo/reset_simulation')
+    rospy.wait_for_service('/gazebo/reset_world')
     try:
-        reset_sim = rospy.ServiceProxy('gazebo/reset_simulation', Empty)
-        reset_sim()
-        pass
+        reset_world = rospy.ServiceProxy('/gazebo/reset_world', Empty)
+        reset_world()
+        print('World is reseted!')
     except rospy.ServiceException as exc:
         print("Service did not process request: " + str(exc))
-        pass
+
+    # rospy.wait_for_service('/gazebo/reset_simulation')
+    # try:
+    #     reset_sim = rospy.ServiceProxy('gazebo/reset_simulation', Empty)
+    #     reset_sim()
+    #     pass
+    # except rospy.ServiceException as exc:
+    #     print("Service did not process request: " + str(exc))
+    #     pass
 
 
 
@@ -357,9 +357,24 @@ if __name__ == '__main__':
     rate = rospy.Rate(20)
     pauseSimulation()
 
-    gazeboPhysicsSet(max_update_rate_value=3000)
+    gazeboPhysicsSet(max_update_rate_value=1000)
+
+    t_prior = rospy.Time.now()
 
     while not rospy.is_shutdown():
+
+        t_now = rospy.Time.now()
+
+        if t_now - t_prior > rospy.Duration(secs=10):
+            pauseSimulation()
+            
+            resetWorld()
+
+            pauseSimulation()
+
+            t_prior =  rospy.Time.now()
+
+            continue   
 
         motionCalculate(gait_type)
 
