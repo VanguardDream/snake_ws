@@ -83,3 +83,6 @@ sudo apt-get update
 ```bash
 sudo apt-get install -y cuda-toolkit-11-0
 ```
+
+## 추가 참고자료
+https://docs.microsoft.com/en-us/windows/win32/direct3d12/gpu-tensorflow-wsl
